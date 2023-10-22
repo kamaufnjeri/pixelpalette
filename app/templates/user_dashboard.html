@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+Login Page
+{% endblock %}
+{% block content %}
+<div class="body-container">
+   <h4 style="color: green"></h4>{{ current_user.username }}</h4>
+   <p>{{ current_user.username }}</p>
+   <p>{{ current_user.first_name }}</p>
+   <p>{{ current_user.email_address }}</p>
+</div>
+{% endblock %}

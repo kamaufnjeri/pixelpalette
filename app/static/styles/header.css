@@ -1,0 +1,72 @@
+/* colors #FF5841 */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+}
+header #head-title, header i {
+    font-size: 60px;
+    font-weight: 600;
+    color: #C53678;
+    cursor: pointer;
+    text-decoration: none;
+}
+header i {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: right 2s ease;
+}
+header i.move-bar-icon {
+    right: 300px;
+    z-index: 2;
+}
+.container-head {
+    width: 270px;
+    height: 600px;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    box-shadow: -10px 10px 10px #000000;
+    display: flex;
+    align-items: left;
+    padding: 20px;
+    z-index: 2;
+    background-color: #C53678;
+    border-radius: 4px;
+    transform: scale(0);
+    transition: all 2s ease;
+    transform-origin: top right;
+}
+.container-visible {
+    transform: scale(1);
+    display: flex;
+}
+.header-nav {
+    display: flex;
+    flex-direction: column;
+}
+.header-nav a {
+    color: #FFF;
+    font-size: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 5px 0px;
+    position: relative;
+}
+.header-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 8px;
+    width: 0;
+    transition: width 0.5s ease;
+    height: 5px;
+    border-radius: 4px;;
+    background: #fff;
+}
+nav a:hover::after {
+    width: 100%;
+    cursor: pointer;
+}

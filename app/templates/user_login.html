@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+Login Page
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <div class="user-cont">
+        <i class="fa-solid fa-user"></i>
+        <h3>Login Page</h3>
+        <div class="user-details">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                {{ form.username.label() }}
+                {{ form.username(placeholder="Enter username") }}
+                <br>
+                {{ form.password.label() }}
+                {{ form.password(placeholder="Enter password") }}
+                <br>
+                <h4>Don't have an account?</h4>
+                <a href="{{ url_for('create_user') }}">Create Account</a>
+                <br>
+                {{ form.submit }}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
