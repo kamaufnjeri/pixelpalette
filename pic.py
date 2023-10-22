@@ -4,7 +4,7 @@ def image_upload(path, image_name):
             f.write(path.read())
         return image_name
     except:
-        return "Error"
+        return "Error uploading image"
 
 # Open the image file you want to upload
 with open('girl.png', 'rb') as image_file:
