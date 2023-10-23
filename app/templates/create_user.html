@@ -4,37 +4,55 @@ Create account
 {% endblock %}
 {% block content %}
 <div class="body-container">
-    <div class="user-cont">
+    <div class="inner-container">
         <i class="fa-solid fa-user"></i>
         <h3>Create Account</h3>
-        <div class="user-details">
+        <div class="form-container">
             <form method="POST">
                 {{ form.hidden_tag() }}
-                {{ form.username.label() }}
-                {{ form.username(placeholder="Enter username") }}
-                <br>
-                {{ form.first_name.label() }}
-                {{ form.first_name(placeholder="Enter your first name") }}
-                <br>
-                {{ form.last_name.label() }}
-                {{ form.last_name(placeholder="Enter your last name") }}
-                <br>
-                {{ form.email_address.label() }}
-                {{ form.email_address(placeholder="Enter your Email Address") }}
-                <br>
-                {{ form.category.label() }}
-                {{ form.category() }}
-                <br>
-                {{ form.password1.label() }}
-                {{ form.password1(placeholder="Enter password") }}
-                <br>
-                {{ form.password2.label() }}
-                {{ form.password2(placeholder="Confirm password") }}
-                <br>
-                <h4>Already have an account?</h4>
-                <a href="{{ url_for('user_login') }}">Login</a>
-                <br>
-                {{ form.submit }}
+                <div class="input-field">
+                    {{ form.username.label(class="label") }}
+                    {{ form.username(placeholder="Enter username", class="input") }}
+                </div>
+                
+                <div class="input-field">
+                    {{ form.first_name.label(class="label") }}
+                    {{ form.first_name(placeholder="Enter your first name", class="input") }}
+                </div>
+                
+                <div class="input-field">
+                    {{ form.last_name.label(class="label") }}
+                    {{ form.last_name(placeholder="Enter your last name", class="input") }}
+                </div>
+
+                <div class="input-field">
+                    {{ form.email_address.label(class="label") }}
+                    {{ form.email_address(placeholder="Enter your Email Address", class="input") }}
+                </div>
+
+                <div class="input-field">
+                    {{ form.category.label(class="label") }}
+                    {{ form.category(class="input") }}
+                </div>
+
+                <div class="input-field">
+                    {{ form.password1.label(class="label") }}
+                    {{ form.password1(placeholder="Enter password", class="input") }}
+                </div>
+
+                <div class="input-field">
+                    {{ form.password2.label(class="label") }}
+                    {{ form.password2(placeholder="Confirm password", class="input") }}
+                </div>
+        
+                <div class="redirect">
+                    <h4>Already have an account?</h4>
+                    <a href="{{ url_for('user_login') }}">Login</a>
+                </div>
+
+                <div class="button-field">
+                    {{ form.submit(class="btn-log") }}
+                </div>
             </form>
         </div>
     </div>

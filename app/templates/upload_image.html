@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}
+Upload Artwork
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <div class="inner-container upload-container">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <h3>Create Account</h3>
+        <div class="user-details">
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="input-field">
+                    {{ form.title.label(class="label") }}
+                    {{ form.title(placeholder="Enter Artwork title", class="input") }}
+                </div>
+                <div class="input-field">
+                    {{ form.description.label(class="label") }}
+                    {{ form.description(placeholder="Enter information on artwork", class="input text-area") }}
+                </div>
+                <div class="input-field">
+                    {{ form.price.label(class="label") }}
+                    {{ form.price(placeholder="Enter price Kshs.", class="input") }}
+                </div>
+                <div class="input-field">
+                    {{ form.category.label(class="label") }}
+                    {{ form.category(class="input") }}
+                </div>
+                <div class="input-field">
+                    {{ form.image.label(class="label") }}
+                    {{ form.image() }}
+                </div>
+                <div class="button-field">
+                    {{ form.submit(class="btn-log") }}
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
