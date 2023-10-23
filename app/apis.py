@@ -1,9 +1,15 @@
 from app import app
-from app.models import User
+from app.models import User, Artwork
 from flask import jsonify
 
 
-@app.route("/api/users")
+@app.errorhandler(404)
+def page_not_found(e):
+    return jsonify({"Status": "Page not found"}), 404
+
+
+
+@app.route("/api/users", methods=["GET"])
 def all_user():
     all_users = User.query.all()
     users = []
@@ -16,3 +22,16 @@ def all_user():
         user['category'] = user1.category
         users.append(user)
     return jsonify({"Users": users})
+
+@app.route("/api/artworks", methods=["GET"])
+def all_artworks():
+    all_artworks = Artwork.query.all()
+    artworks = []
+    for art in all_artworks:
+        artwork = {}
+        artwork['title'] = art.title
+        artwork['owner'] = art.description
+        artwork['category'] = art.category
+        artwork['url'] = art.artwork_url
+        artworks.append(artwork)
+    return jsonify({"Artworks": artworks})

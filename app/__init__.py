@@ -15,7 +15,7 @@ migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 cors = CORS(app)
-login_manager.login_view = "login_user"
+login_manager.login_view = "user_login"
 login_manager.login_message = "info"
 
 
