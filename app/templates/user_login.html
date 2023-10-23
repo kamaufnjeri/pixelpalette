@@ -4,22 +4,27 @@ Login Page
 {% endblock %}
 {% block content %}
 <div class="body-container">
-    <div class="user-cont">
+    <div class="inner-container login-container">
         <i class="fa-solid fa-user"></i>
         <h3>Login Page</h3>
         <div class="user-details">
             <form method="POST">
                 {{ form.hidden_tag() }}
-                {{ form.username.label() }}
-                {{ form.username(placeholder="Enter username") }}
-                <br>
-                {{ form.password.label() }}
-                {{ form.password(placeholder="Enter password") }}
-                <br>
-                <h4>Don't have an account?</h4>
-                <a href="{{ url_for('create_user') }}">Create Account</a>
-                <br>
-                {{ form.submit }}
+                <div class="input-field">
+                    {{ form.username.label(class="label") }}
+                    {{ form.username(placeholder="Enter username", class="input") }}
+                </div>
+                <div class="input-field">
+                    {{ form.password.label(class="label") }}
+                    {{ form.password(placeholder="Enter password", class="input") }}
+                </div>
+                <div class="redirect">
+                    <h4>Don't have an account?</h4>
+                    <a href="{{ url_for('create_user') }}">Create Account</a>
+                </div>
+                <div class="button-field">
+                    {{ form.submit(class="btn-log btn-login") }}
+                </div>
             </form>
         </div>
     </div>

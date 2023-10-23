@@ -40,14 +40,14 @@
     justify-content: center;
     transition: transform 0.3s ease;
 }
-.button:hover {
+.button:hover, .btn-log:hover {
     cursor: pointer;
     transform: scale(1.2);
 }
 footer {
     position: absolute;
     bottom: 20px;
-    right: 20px;
+    left: 20px;
     font-size: 20px;
     font-weight: 500;
 }
