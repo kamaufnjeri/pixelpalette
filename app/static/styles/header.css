@@ -5,6 +5,11 @@ header {
     justify-content: space-between;
     margin: 10px 20px;
 }
+header h4 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #FF5841;
+}
 header #head-title, header i {
     font-size: 50px;
     font-weight: 600;

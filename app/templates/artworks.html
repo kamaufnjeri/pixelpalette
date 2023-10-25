@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Artworks page
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <h2>Discover, Collect, Create: Art in the Digital Realm</h2>
+    <h4>Artworks</h4>
+    <div class="selections">
+        <h5>Select Artworks</h5>
+        <select id="category-artworks" class="input">
+            <option value="all">All</option>
+            <option value="painting">Paintings</option>
+            <option value="sculpture">Sculptures</option>
+            <option value="photography">Photography</option>
+            <option value="others">Others</option>
+        </select>
+        <button class="btn-log" id="show-selection">Search</button>
+    </div>
+    <div class="artworks" id="artworks-container">
+    </div>  
+</div>
+{% endblock %}
