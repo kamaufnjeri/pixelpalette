@@ -47,6 +47,8 @@ def all_artworks():
                         "url": art.artwork_url,
                         "id": art.id
                     }
+                else:
+                    continue
                 artworks.append(artwork)
             return jsonify({"Artworks": artworks})
         else:
