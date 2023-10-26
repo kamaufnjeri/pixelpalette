@@ -1,22 +1,13 @@
-const headerNav = document.querySelector('.container-head');
-const barIcon = document.getElementById('menu-bar');
-
-barIcon.addEventListener('click', () => {
-   headerNav.classList.toggle('container-visible');
-   barIcon.classList.toggle('move-bar-icon');
+document.addEventListener("DOMContentLoaded", function () {
+    const headerNav = document.querySelector('.container-head');
+    const barIcon = document.getElementById('menu-bar');
+    
+    
+    // deals with revealing and hiding the header items
+    barIcon.addEventListener('click', () => {
+       headerNav.classList.toggle('container-visible');
+       barIcon.classList.toggle('move-bar-icon');
+    });
+    
+    // function to get data from api created in flask
 });
-
-async function users() {
-   try {
-       const resp = await fetch('/api/users');
-       if (!resp.ok) {
-           throw new Error(`Network response was not ok: ${resp.status}`);
-       }
-       let data = await resp.json();
-       console.log(data);
-   } catch (error) {
-       console.error("Error:", error);
-   }
-}
-
-users();

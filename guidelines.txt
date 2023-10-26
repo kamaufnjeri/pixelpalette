@@ -17,3 +17,6 @@ after everything - run migrate in case of changes to the database - "flask db mi
 		 - update the requirements.txt file with the new python packages/modules installed
 		 	"pip freeze > requirements.txt"
 - deactivate to leave virtual environment
+
+if " " in form.username.data:
+	flash("username hould be one word")
