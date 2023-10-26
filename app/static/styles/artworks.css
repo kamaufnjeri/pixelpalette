@@ -1,0 +1,92 @@
+.body-container h4 {
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.selections {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.selections h5 {
+    flex-basis: 100%;
+    font-weight: 500;
+    font-size: 20px;
+}
+.artworks, .artist-artworks {
+    margin: 20px 20px 20px 30px;
+    padding: 10px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.artwork {
+    display: flex;
+    flex-flow: column;
+    margin: 0 10px 20px 10px;
+}
+.artwork img {
+    border-radius: 6px;
+    border: 2px solid #C53678;
+    height: 350px;
+    width: 300px;
+}
+.artwork h4 {
+    font-size: 20px;
+    color: #FF5841;
+    font-weight: 500;
+}
+.artwork h5, .artwork h6 {
+    font-size: 18px;
+    font-weight: 500;
+}
+.artwork h6 {
+    color: #C53678;
+}
+.single-artwork {
+    display: flex;
+    align-items: center;
+    flex-flow: row-wrap;
+}
+
+.single-artwork img{
+    border-radius: 6px;
+    border: 2px solid #C53678;
+    width: 300px;
+    height: 400px;
+    margin-right: 40px;
+    margin-top: 10px;
+}
+.single-artwork h2 {
+    font-size: 24px;
+    margin-left: -2px;
+    text-decoration: underline;
+}
+.single-artwork h3 {
+    font-size: 22px;
+}
+.single-artwork h4 {
+    font-size: 20px;
+    font-weight: 400;
+}
+.single-artwork h5 {
+    font-size: 18px;
+    font-weight: 400;
+}
+.single-artwork h6 {
+    font-size: 18px;
+    color: #C53678;
+}
+.cont-artist {
+    font-size: 22px;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 2px solid #C53678;
+    margin: 20px;
+    padding: 10px;
+    color: #FF5841;
+}
+.cont-artist h4 {
+    margin-bottom: 10px;
+}
+

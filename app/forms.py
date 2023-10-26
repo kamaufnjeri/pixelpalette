@@ -65,3 +65,9 @@ class ProfileForm(FlaskForm):
     email_address = StringField(label='Email address:', validators=[Email()])
     password1 = PasswordField(label='Password:')
     submit = SubmitField(label='Save Changes')
+
+class EditForm(FlaskForm):
+    title = StringField(label='Title:', validators=[DataRequired()])
+    description = TextAreaField(label='Description:', validators=[DataRequired()])
+    price = StringField(label='Price:', validators=[DataRequired()])
+    submit = SubmitField(label='Save Changes')
