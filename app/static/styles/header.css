@@ -10,18 +10,26 @@ header h4 {
     font-weight: 600;
     color: #FF5841;
 }
-header #head-title, header i {
+header #head-title, header i.fa-bars {
     font-size: 50px;
     font-weight: 600;
     color: #C53678;
     cursor: pointer;
     text-decoration: none;
 }
-header i {
+header i.fa-bars {
     position: absolute;
     top: 20px;
     right: 20px;
     transition: right 2s ease;
+}
+header i.fa-cart-shopping {
+	font-size: 50px;
+    font-weight: 600;
+    color: #C53678;
+    cursor: pointer;
+    text-decoration: none;
+
 }
 header i.move-bar-icon {
     right: 320px;

@@ -18,7 +18,7 @@ class Methods:
             api_secret=os.getenv("CLOUDINARY_API_SECRET"),
             secure=True
         )
-        
+
         img = Image.open(image)
 
         if img.mode == 'RGBA':
@@ -50,3 +50,15 @@ class Methods:
             # Log the error
             logging.error(f"Image upload failed: {str(e)}")
             return "Image upload failed. Please try again."
+
+    def total_price(self, purchase_items, changed_item=None, purchase_item=None):
+        if purchase_items:
+            total_price = 0
+            for item in purchase_items:
+                if changed_item == item or (purchase_item and item == purchase_item):
+                    continue
+                total_price += float(item.artwork.price) * int(item.quantity)
+            return total_price
+        return 0
+
+

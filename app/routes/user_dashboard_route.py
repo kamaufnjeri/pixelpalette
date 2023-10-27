@@ -8,9 +8,11 @@ from app.models import User
 @login_required
 def user_dashboard(username):
     user = User.query.filter_by(username=username).first()
+    my_artworks = []
     try:
         if user.category == 'artist':
             my_artworks = user.owner_artworks
+            print(my_artworks)
     except Exception:
         flash("User does not exist", category="danger")
 
