@@ -3,9 +3,11 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8">
+		<link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/notifications.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='styles/cart.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/forms.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/popup.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/artworks.css') }}">
@@ -18,7 +20,12 @@
     <body>
         <header>
             <a href="{{ url_for('home') }}" id="head-title">PixelPallete</a>
-            <h4>Welcome {{ current_user.username }}!</h4>
+			{% if current_user.is_authenticated %}
+            <h4>@{{ current_user.username }}</h4>
+			<a href="{{ url_for('shopping_cart', username=current_user.username, id=current_user.cart.id) }}">
+				<i class="fa-regular fa-cart-shopping"></i>
+			</a>
+			{% endif %}
             <i class="fa-solid fa-bars" id="menu-bar"></i>
             {% include "header.html" %}
             {% include "popupdelete.html" %}
@@ -35,7 +42,7 @@
             {% endif %}
             {% endwith %}
             {% block content %}
-            
+
             {% endblock %}
         </main>
         <footer>

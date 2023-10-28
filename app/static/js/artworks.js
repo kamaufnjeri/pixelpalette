@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const tag = document.createElement(childTag);
         if (childTag === 'img') {
             tag.src = messageOrUrl;
-        } 
+        }
         else {
             tag.innerHTML = messageOrUrl;
         }
@@ -33,26 +33,26 @@ document.addEventListener("DOMContentLoaded", function () {
     if (artworksContainer) {
         const selectionOption = document.getElementById("category-artworks");
         const showSelection = document.getElementById("show-selection");
-        
+
         // display the artworks
         async function displayAllArtworks () {
             try {
                 const artworks = await api('artworks');
                 artworks.Artworks.forEach(artwork => {
                     appendArtwork(artwork);
-                }); 
+                });
             } catch (error) {
                 console.error(error);
             }
         }
         // display artworks on reload browser
-        
+
         // display artwork by user selection
         if (showSelection) {
             showSelection.addEventListener('click', async () => {
                 try {
                     const data = await api('artworks');
-                    artworksContainer.innerHTML = ''; 
+                    artworksContainer.innerHTML = '';
                     data.Artworks.forEach(artwork => {
                         if (selectionOption.value === "all" || artwork.category === selectionOption.value) {
                             appendArtwork(artwork);
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }
-        
+
         window.addEventListener('load', () => {
             displayAllArtworks();
         });
@@ -80,9 +80,9 @@ document.addEventListener("DOMContentLoaded", function () {
             singleArtworkContainer.querySelector('a').classList.add('btn-log');
             artworksContainer.appendChild(singleArtworkContainer);
         }
-        
+
         // appending an element to parent element
-        
+
     }
 
     if (singleArtwork) {
@@ -99,7 +99,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 appendChild('h4', 'Category: ' + artwork.category, artworkDetails);
                 appendChild('h5', 'Description: ' + artwork.description, artworkDetails);
                 appendChild('h6', 'Price: Kshs. ' + artwork.price, artworkDetails);
+				const form = document.createElement('form');
+				const quantity = document.createElement('input');
+				const quantityLabel = document.createElement('label');
+				const addToCart = document.createElement('button');
+				quantity.type = "number";
+				quantity.name = "quantity";
+				quantity.max = 100;
+				quantity.min = 1;
+				addToCart.innerHTML = "Add to Cart";
+				quantityLabel.innerHTML = "Quantity";
+				quantity.classList.add("quantity");
+				addToCart.id = "add-to-cart"
+				addToCart.classList.add("btn-log");
+				quantityLabel.classList.add("quantity-label");
+				form.method = "POST";
+				form.appendChild(quantityLabel);
+				form.appendChild(quantity);
+				form.appendChild(addToCart);
+				artworkDetails.appendChild(form);
                 singleArtwork.appendChild(artworkDetails);
+				addToCart.addEventListener("click", () => {
+					form.submit();
+				});
             } catch (error) {
                 console.error(error);
             }
@@ -124,7 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.error(error);
             }
         })();
-        
+
     }
     if (artistArtworks) {
         (async () => {
@@ -141,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     appendChild('a', 'View Artwork', singleArtworkContainer);
                     singleArtworkContainer.querySelector('a').href = `artworks/${artwork.id}`;
                     singleArtworkContainer.querySelector('a').classList.add('btn-log');
-                    artistArtworks.appendChild(singleArtworkContainer);                    
+                    artistArtworks.appendChild(singleArtworkContainer);
                 });
             } catch (error) {
                 console.error(error);
