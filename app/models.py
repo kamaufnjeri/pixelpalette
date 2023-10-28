@@ -1,5 +1,8 @@
 from app import db, login_manager, bcrypt
 from flask_login import UserMixin
+from datetime import datetime
+from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -31,7 +34,25 @@ class Artwork(db.Model):
     category = db.Column(db.String(), index=True, nullable=False)
     artwork_url = db.Column(db.String(), unique=True, index=True, nullable=False)
     owner_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
+    exhibits = db.relationship('Exhibit_Artwork', back_populates='artwork')
 
     def __repr__(self):
         # Change printing of objects of class User to help in debugging
         return f'User {self.username}'
+
+
+class Exhibits(db.Model):
+    id = db.Column(db.Integer(), primary_key=True)
+    name = db.Column(db.String(255), nullable=False, index=True)
+    start_date = db.Column(db.DateTime, nullable=False)
+    end_date = db.Column(db.DateTime, nullable=False)
+    artworks = db.relationship('Exhibit_Artwork', back_populates='exhibit')
+
+
+class Exhibit_Artwork(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    artwork_id = db.Column(db.Integer, db.ForeignKey('artwork.id'), nullable=False)
+    exhibit_id = db.Column(db.Integer, db.ForeignKey('exhibits.id'), nullable=False)
+
+    artwork = db.relationship("Artwork", backref="exhibit")
+    exhibit = db.relationship("Exhibits", backref="artwork")

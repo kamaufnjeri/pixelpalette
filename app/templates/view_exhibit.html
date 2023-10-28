@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Exhibits
+{% endblock %}
+{% block content %}
+
+<div class="body-container">
+    <h2>Ongoing Exhibits</h2>
+    <div class="ongoing-exhibits">
+        {% for exhibit in ongoing %}
+        <li>
+            <h3>{{ exhibit.name }}</h3>
+            <p>Artworks:</p>
+            <ul>
+                {% for artwork in exhibit.artworks %}
+                    <li>
+                        <strong>{{ artwork.title }}</strong> - {{ artwork.description }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Time Left: <span id="timeLeft_{{ exhibit.id }}"></span></p>
+        </li>
+        {% endfor %}
+    </div>
+
+    <h2>Upcoming Exhibits</h2>
+    <div class="upcoming-exhibits">
+        {% for exhibit in upcoming %}
+        <li>
+            <h3>{{ exhibit.name }}</h3>
+            <p>Artworks:</p>
+            <ul>
+                {% for artwork in exhibit.artworks %}
+                    <li>
+                        <strong>{{ artwork.title }}</strong> - {{ artwork.description }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Starts in: <span id="startsIn_{{ exhibit.id }}"></span></p>
+        </li>
+        {% endfor %}
+    </div>
+</div>
+
+
+<script src="{{ url_for('static', filename='js/countdown.js') }}"></script>
+{% endblock %}

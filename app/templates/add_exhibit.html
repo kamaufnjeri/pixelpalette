@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}
+Exhibit Artwork
+{% endblock %}
+{% block content %}
+
+
+
+<form method="POST" action="{{ url_for('add_exhibit') }}">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required>
+
+    <label for="description">Description:</label>
+    <textarea name="description" required></textarea>
+
+    <label for="price">Price:</label>
+    <input type="number" name="price" required>
+
+    <label for="start_datetime">Start Date and Time:</label>
+    <input type="datetime-local" name="start_datetime" required>
+
+    <label for="end_datetime">End Date and Time:</label>
+    <input type="datetime-local" name="end_datetime" required>
+
+    <button type="submit">Create Exhibit</button>
+</form>
+
+{% endblock %}
