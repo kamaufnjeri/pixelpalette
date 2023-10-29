@@ -1,7 +1,7 @@
 from app import app, db, bcrypt
-from flask import render_template, redirect, url_for, flash, request
-from flask_login import login_user, logout_user, login_required
-from app.models import User, Artwork, Exhibit_Artwork, Exhibits
+from flask import render_template, redirect, url_for, flash, request, jsonify
+from flask_login import login_user, logout_user, login_required, current_user
+from app.models import User, Artwork, ShoppingCart, Exhibit_Artwork, Exhibits
 from app.methods import Methods
 from datetime import datetime
 from app.forms import LoginForm, RegistrationForm, ArtworkForm, ProfileForm
@@ -24,7 +24,7 @@ def create_user():
             email_address = form.email_address.data
             category = form.category.data
             password_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
-            
+
             new_user = User(
                 username=username,
                 first_name=first_name,
@@ -35,18 +35,18 @@ def create_user():
             )
             db.session.add(new_user)
             db.session.commit()
-            
+
             login_user(new_user)
             flash(f"Success in creating account. You are logged in as {new_user.username}", category="success")
             return redirect(url_for('user_dashboard', username=new_user.username))
         except Exception as e:
             db.session.rollback()  # Roll back the transaction on error
             flash(f"Error creating account: {str(e)}", category="danger")
-    
+
     if form.errors:
         for error_msg in form.errors.values():
             flash(f"You have the following error: {error_msg}", category='danger')
-    
+
     return render_template("create_user.html", form=form)
 
 
@@ -58,7 +58,7 @@ def user_login():
             username = form.username.data
             password = form.password.data
             user_to_log = User.query.filter_by(username=username).first()
-            
+
             if user_to_log and user_to_log.check_password_correct(password):
                 login_user(user_to_log)
                 flash(f"You are logged in as {user_to_log.username}", category="success")
@@ -67,7 +67,7 @@ def user_login():
                 flash("The username and password are not a match! Please try again", category="danger")
         except Exception as e:
             flash(f"Error during login: {str(e)}", category="danger")
-    
+
     return render_template("user_login.html", form=form)
 
 
@@ -100,7 +100,7 @@ def upload_artwork(username):
 
             try:
                 price = float(form.price.data)
-                
+
             except Exception:
                 flash("Ensure the price is a number/integer", category="danger")
 
@@ -133,7 +133,7 @@ def upload_artwork(username):
             flash(f"Error adding artwork: {str(e)}", category="danger")
     else:
         flash('You can upload your artwork here', category='info')
-    
+
     return render_template('upload_image.html', form=form)
 
 
@@ -148,28 +148,28 @@ def user_profile(username):
             last_name = form.last_name.data
             email_address = form.email_address.data
             user = User.query.filter_by(username=username).first()
-            
+
             if user:
                 user.username = updated_username
                 user.first_name = first_name
                 user.last_name = last_name
                 user.email_address = email_address
-                
+
                 if form.password1.data:
                     password_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
                     user.password_hash = password_hash
-                
+
                 db.session.commit()
                 flash(f"Success in updating your profile {user.username}", category="success")
                 return redirect(url_for('user_profile', username=user.username))
         except Exception as e:
             db.session.rollback()  # Roll back the transaction on error
             flash(f"Error updating profile: {str(e)}", category="danger")
-    
+
     if form.errors:
         for error_msg in form.errors.values():
             flash(f"You have the following error: {error_msg}", category='danger')
-    
+
     return render_template("user_profile.html", form=form)
 
 
@@ -194,6 +194,31 @@ def delete_user(username):
     else:
         flash("User not found", category="danger")
         return redirect(url_for('home'))
+
+
+@app.route('/add_to_cart', methods=['POST'])
+@login_required # Ensure that user is logged in to add to cart
+def add_to_cart():
+    data = request.get_json()
+    user_id = data['user_id']
+    artwork_id = data['artwork_id']
+    quantity = data['quantity']
+
+	# Validate data and check if the artwork exists
+    artwork = Artwork.query.get(artwork_id)
+    if not artwork or quantity < 1:
+        return flash("Error: Invalid artwork or quantity", category="danger")
+
+	# check if the artwork is already in the user's cart
+    cart_item = ShoppingCart.query.filter_by(user_id=current_user.id, artwork_id=artwork_id).first()
+    if cart_item:
+        cart_item.quantity += quantity
+    else:
+        cart_item = ShoppingCart(user_id=current_user.id, artwork_id=artwork_id, quantity=quantity)
+        db.session.add(cart_item)
+    db.session.commit()
+    return flash("Artwork added to the cart successfully", category="success")
+
 
 
 @app.route("/exhibits")

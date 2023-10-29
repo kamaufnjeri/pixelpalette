@@ -4,6 +4,22 @@
 {% endblock %}
 {% block content %}
 <div class="body-container">
-   
+    {% if my_artworks %}
+    <div class="artist-artworks">
+        {% for artwork in my_artworks %}
+        <div class="artwork">
+            <img src="{{ artwork.artwork_url }}">
+            <h4>Name: {{ artwork.title }}</h4>
+            <h6>Price: {{ artwork.price }}</h6>
+            <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-log">
+                Add to exhibit
+            </a>
+            <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-log">
+                Edit
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
