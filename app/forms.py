@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import Length, EqualTo, Email, DataRequired, ValidationError
-from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, IntegerField, DateTimeField
 from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import SubmitField
 from app.models import User
@@ -71,5 +71,3 @@ class EditForm(FlaskForm):
     description = TextAreaField(label='Description:', validators=[DataRequired()])
     price = StringField(label='Price:', validators=[DataRequired()])
     submit = SubmitField(label='Save Changes')
-
-

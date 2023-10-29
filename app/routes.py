@@ -1,8 +1,9 @@
 from app import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request, jsonify
 from flask_login import login_user, logout_user, login_required, current_user
-from app.models import User, Artwork, ShoppingCart
+from app.models import User, Artwork, ShoppingCart, Exhibit_Artwork, Exhibits
 from app.methods import Methods
+from datetime import datetime
 from app.forms import LoginForm, RegistrationForm, ArtworkForm, ProfileForm
 
 
@@ -217,3 +218,37 @@ def add_to_cart():
         db.session.add(cart_item)
     db.session.commit()
     return flash("Artwork added to the cart successfully", category="success")
+
+
+
+@app.route("/exhibits")
+@login_required
+def exhibits():
+    
+    exhibits = Exhibit_Artwork.query.all()
+    return render_template("view_exhibit.html", exhibits=exhibits)
+
+
+@app.route("/add_exhibit", methods=["POST", "GET"])
+@login_required
+def add_exhibit():
+    if request.method == "POST":
+        name = request.form.get('name')
+        description = request.form.get('description')
+        price = request.form.get('price')
+        start_datetime = request.form.get('start_datetime')
+        end_date = request.form.get('end_datetime')
+
+        # Create a new exhibit and add it to the database
+        exhibit_date = datetime.strptime(start_datetime, '%Y-%m-%dT%H:%M')
+        end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
+        exhibit = Exhibits(name=name, start_date=exhibit_date, end_date=end_date)
+        db.session.add(exhibit)
+        db.session.commit()
+
+        # Redirect to a success page or the exhibit listing page
+        flash("Successfully added an exhibition", "success")
+        return redirect(url_for('exhibits'))
+
+    # Render the exhibit creation form for GET requests
+    return render_template('add_exhibit.html')

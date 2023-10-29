@@ -1,17 +1,17 @@
 <div class="container-head">
     <nav class="header-nav">
         <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('exhibits') }}">View Exhibits</a>
         <a href="{{ url_for('view_artworks') }}">View Artworks</a>
         <a href="{{ url_for('artists_page') }}">View Artists</a>
-        <a href="#">View Exhibits</a>
         <a href="#">Buy Artworks</a>
         {% if current_user.is_authenticated %}
             {% if current_user.category == 'artist' %}
                 <a href="{{ url_for('upload_artwork', username=current_user.username) }}">
                     Add An Artwork
                 </a>
+                <a href="{{ url_for('add_exhibit') }}">Add Exhibition</a>
                 <a href="{{ url_for('user_dashboard', username=current_user.username) }}">My Artworks</a>
-                <a href="#">Add Exhibition</a>
             {% endif %}
             <a href="{{ url_for('user_profile', username=current_user.username) }}">My Profile</a>
             <a id="delete-user">
