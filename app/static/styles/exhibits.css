@@ -1,0 +1,100 @@
+.exhibit-container {
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    overflow: hidden;
+    }
+
+    .artwork-wrapper {
+        position: relative;
+        width: 800px;
+        height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+        overflow: hidden;
+        background-color: #000;
+        color: white;
+        border-radius: 6px;
+    }
+
+    .slides {
+        position: absolute;
+        height: 90%;
+        left: 0;
+        top: 0;
+        display: flex;
+        align-items: center;
+        flex-flow: row;
+        transition: left 0.5s ease;
+        overflow: hidden;
+    }
+
+    .slide {
+        display: flex;
+        width: 800px;
+        align-items: center;
+        justify-content: space-around;
+        transition: left 0.5s ease;
+    }
+
+    .slides .slides-info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
+    }
+    
+    .slides img {
+        width: 400px;
+        height: 600px;
+        border-radius: 4px;
+    }
+    
+    .artwork-indicators {
+        display: flex;
+        align-items: center;
+        z-index: 10;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .indicator {
+        width: 20px;
+        height: 20px;
+        border: 2px solid white;
+        border-radius: 50%;
+        margin: 10px;
+    }
+    
+    #prev-button, #next-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 6;
+        background: rgba(255, 255, 255, 0.5);
+        transition: 0.5s;
+        cursor: pointer;
+        color: #FF5841;
+    }
+    #prev-button:hover, #next-button:hover {
+        background: rgba(255, 255, 255, 0.9);
+    }
+    #prev-button {
+        left: 20px;
+    }
+    #next-button {
+        right: 20px;
+    }
+    
+    .active {
+        background: white;
+        transform: scale(1.1);
+    }

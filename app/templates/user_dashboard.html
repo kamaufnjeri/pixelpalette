@@ -11,6 +11,9 @@
             <img src="{{ artwork.artwork_url }}">
             <h4>Name: {{ artwork.title }}</h4>
             <h6>Price: {{ artwork.price }}</h6>
+            <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-log">
+                Add to exhibit
+            </a>
             <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-log">
                 Edit
             </a>

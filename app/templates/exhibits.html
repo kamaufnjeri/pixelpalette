@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+Exhibits
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <h2>Discover, Collect, Create: Art in the Digital Realm</h2>
+    <h4>Exhibits</h4>
+    <div class="exhibits artists" id="exhibits">
+        {% for exhibit in exhibits %}
+        <div class="exhibit cont-artist" data-start-date="{{ exhibit.start_date }}" data-end-date="{{ exhibit.end_date }}">
+            <h4>{{ exhibit.name }}</h4>
+            <div class="time-remaining">
+                <span id="days"></span>
+                <span id="hours"></span>
+                <span id="minutes"></span>
+                <span id="seconds"></span>
+            </div>
+            <a href="{{ url_for('view_exhibits', id=exhibit.id) }}" class="btn-log">View exhibit</a>
+        </div>
+        {% endfor %}
+    </div>  
+</div>
+{% endblock %}
