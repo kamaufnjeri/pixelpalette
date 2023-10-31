@@ -43,6 +43,7 @@
 .artwork h6 {
     color: #C53678;
 }
+
 .single-artwork {
     display: flex;
     align-items: center;
@@ -52,9 +53,16 @@
 .single-artwork form {
 	display: flex;
 	flex-flow: row;
-
-
-
+}
+.single-artwork p {
+    font-size: 18px;
+}
+.single-artwork span {
+    font-size: 18px;
+    color: #FF5841;
+}
+.single-artwork span:hover {
+    text-decoration: underline;
 }
 .quantity {
 	width: 70px;

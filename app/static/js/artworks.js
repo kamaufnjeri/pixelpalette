@@ -99,6 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 appendChild('h4', 'Category: ' + artwork.category, artworkDetails);
                 appendChild('h5', 'Description: ' + artwork.description, artworkDetails);
                 appendChild('h6', 'Price: Kshs. ' + artwork.price, artworkDetails);
+
+                const showContact = document.createElement('p');
+                const contact = document.createElement('span');
 				const form = document.createElement('form');
 				const quantity = document.createElement('input');
 				const quantityLabel = document.createElement('label');
@@ -107,21 +110,30 @@ document.addEventListener("DOMContentLoaded", function () {
 				quantity.name = "quantity";
 				quantity.max = 100;
 				quantity.min = 1;
-				addToCart.innerHTML = "Add to Cart";
+				addToCart.innerHTML = "Add to favorites Cart";
 				quantityLabel.innerHTML = "Quantity";
+                showContact.innerHTML = "To purchase artwork contact owner"
+                contact.innerHTML = "Show contact"
 				quantity.classList.add("quantity");
 				addToCart.id = "add-to-cart"
 				addToCart.classList.add("btn-log");
 				quantityLabel.classList.add("quantity-label");
 				form.method = "POST";
+                artworkDetails.appendChild(showContact);
+                artworkDetails.appendChild(contact);
 				form.appendChild(quantityLabel);
 				form.appendChild(quantity);
 				form.appendChild(addToCart);
 				artworkDetails.appendChild(form);
                 singleArtwork.appendChild(artworkDetails);
+
+                contact.addEventListener('click', () => {
+                    contact.innerHTML = 'Email_address: ' + artwork.contact;
+                });
 				addToCart.addEventListener("click", () => {
 					form.submit();
 				});
+
             } catch (error) {
                 console.error(error);
             }

@@ -9,7 +9,7 @@ Exhibit Artwork
         <i class="fa-solid fa-palette"></i>
         <h3>Add an Exhibit</h3>
         <div class="form-container">
-            <form method="POST" action="{{ url_for('add_exhibit') }}">
+            <form method="POST" action="{{ url_for('add_exhibit', username=current_user.username) }}">
                 <div class="input-field">
                     <label for="name" class="label">Name:</label>
                     <input type="text" name="name" class="input" placeholder="Enter name of exhibit" required>
@@ -37,24 +37,5 @@ Exhibit Artwork
         </div>
     </div>
 </div>
-
-<form method="POST" action="{{ url_for('add_exhibit') }}">
-    <label for="name">Name:</label>
-    <input type="text" name="name" required>
-
-    <label for="description">Description:</label>
-    <textarea name="description" required></textarea>
-
-    <label for="price">Price:</label>
-    <input type="number" name="price" required>
-
-    <label for="start_datetime">Start Date and Time:</label>
-    <input type="datetime-local" name="start_datetime" required>
-
-    <label for="end_datetime">End Date and Time:</label>
-    <input type="datetime-local" name="end_datetime" required>
-
-    <button type="submit">Create Exhibit</button>
-</form>
 
 {% endblock %}

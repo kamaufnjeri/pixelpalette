@@ -20,6 +20,4 @@ def delete_artwork(id):
                 db.session.rollback()  # Roll back the transaction on error
                 flash(f"Error deleting artwork: {str(e)}", category="danger")
                 return redirect(url_for('user_dashboard', username=current_user.username))
-        else:
-            flash("Invalid request method", category="danger")
-            return redirect(url_for('user_dashboard', username=current_user.username))
+            

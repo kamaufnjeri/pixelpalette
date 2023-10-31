@@ -7,19 +7,24 @@ Exhibits
 <div class="body-container">
     <h2>Discover, Collect, Create: Art in the Digital Realm</h2>
     <h4>Exhibits</h4>
-    <div class="exhibits artists" id="exhibits">
-        {% for exhibit in exhibits %}
-        <div class="exhibit cont-artist" data-start-date="{{ exhibit.start_date }}" data-end-date="{{ exhibit.end_date }}">
-            <h4>{{ exhibit.name }}</h4>
+    <div class="exhibits" id="exhibits">
+        {% if current_exhibits %}
+        {% for exhibit in current_exhibits %}
+        <div class="exhibit" data-start-date="{{ exhibit.start_date }}" data-end-date="{{ exhibit.end_date }}">
+            <h4>Exhibit Name: {{ exhibit.name }}</h4>
+            <h5>Owner: {{ exhibit.owner.username }}</h5>
             <div class="time-remaining">
-                <span id="days"></span>
-                <span id="hours"></span>
-                <span id="minutes"></span>
-                <span id="seconds"></span>
+                <span class="days"></span>
+                <span class="hours"></span>
+                <span class="minutes"></span>
+                <span class="seconds"></span>
             </div>
-            <a href="{{ url_for('view_exhibits', id=exhibit.id) }}" class="btn-log">View exhibit</a>
+            <a href="{{ url_for('view_exhibits', id=exhibit.id) }}" class="btn-log exhibit-btn">View exhibit</a>
         </div>
         {% endfor %}
+        {% else %}
+        <h4>No exhibits scheduled</h4>
+        {% endif %}
     </div>  
 </div>
 {% endblock %}

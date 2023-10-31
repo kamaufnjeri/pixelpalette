@@ -72,6 +72,7 @@ def artwork(id, username):
                 "category": artwork.category,
                 "description": artwork.description,
                 "owner": artwork.owner.username,
+                "contact": artwork.owner.email_address
             }
             return jsonify(artwork_json)
         else:

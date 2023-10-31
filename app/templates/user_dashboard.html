@@ -1,25 +1,58 @@
 {% extends 'base.html' %}
 {% block title %}
-{{ current_user.username }} Dashboard
+{{ current_user.username }} dashboard
 {% endblock %}
 {% block content %}
 <div class="body-container">
-    {% if my_artworks %}
-    <div class="artist-artworks">
-        {% for artwork in my_artworks %}
-        <div class="artwork">
-            <img src="{{ artwork.artwork_url }}">
-            <h4>Name: {{ artwork.title }}</h4>
-            <h6>Price: {{ artwork.price }}</h6>
-            <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-log">
-                Add to exhibit
-            </a>
-            <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-log">
-                Edit
-            </a>
+        {% if my_artworks %}
+        <div class="artist-artworks my-artworks">
+            <h3>My Artworks</h3>
+            {% for artwork in my_artworks %}
+            <div class="artwork">
+                <img src="{{ artwork.artwork_url }}">
+                <h4>Name: {{ artwork.title }}</h4>
+                <h6>Price: {{ artwork.price }}</h6>
+                <div class="btn-field">
+                    <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-dash success row">
+                        Add to Exhibit
+                    </a>
+                    <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-dash info row">
+                        Edit
+                    </a>
+                    <form action="{{ url_for('remove_from_exhibit', artwork_id=artwork.id) }}" method="POST">
+                        <button type="submit" class="btn-dash danger">Remove from Exhibit</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% endif %}
+        <div class="dashboard">
+            <div class="account-info">
+                <div class="account">
+                    <h3>My Account Details</h3>
+                    <div class="account-details">
+                        <h4><span>Username: </span>{{ current_user.username }}</h4>
+                        <h4><span>Name: </span>{{ current_user.first_name }} {{ current_user.last_name }}</h4>
+                        <h5><span>Email: </span>{{ current_user.email_address }}</h5>
+                        <h5><span>Category: </span>{{ current_user.category }}</h5>
+                        <a href="{{ url_for('user_profile', username=current_user.username) }}" class="btn-dash info">Edit</a>
+                    </div>
+                </div>
+                <div class="account">
+                    <h3>My Favorite artworks</h3>
+                    <div class="account-details">
+                        {% if current_user.purchase_items != [] %}
+                        {% for favorite_artwork in current_user.purchase_items %}
+                        <h4><span>Artwork Name: </span>{{ favorite_artwork.artwork.title }}</h4>
+                        <a href="{{ url_for('single_artwork', username=favorite_artwork.artwork.owner.username, id=favorite_artwork.artwork.id) }}" class="btn-log">
+                            View Artwork
+                        </a>
+                        {% endfor %}
+                        {% endif%}
+                    </div>
+                </div>
+            </div>
     </div>
-    {% endif %}
 </div>
 {% endblock %}

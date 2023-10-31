@@ -4,10 +4,11 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     // deals with revealing and hiding the header items
-    barIcon.addEventListener('click', () => {
-       headerNav.classList.toggle('container-visible');
-       barIcon.classList.toggle('move-bar-icon');
-    });
-    
-    // function to get data from api created in flask
+    if (barIcon) {
+        barIcon.addEventListener('click', () => {
+            headerNav.classList.toggle('container-visible');
+            barIcon.classList.toggle('move-bar-icon');
+         });
+
+    }
 });

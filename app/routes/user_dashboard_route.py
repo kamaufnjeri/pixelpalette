@@ -12,7 +12,7 @@ def user_dashboard(username):
     try:
         if user.category == 'artist':
             my_artworks = user.owner_artworks
-            print(my_artworks)
+            
     except Exception:
         flash("User does not exist", category="danger")
 
