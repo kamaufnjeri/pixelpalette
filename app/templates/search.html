@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search Results
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <h2>Discover, Collect, Create: Art in the Digital Realm</h2>
+    <h4>Search results</h4>
+    <div class="artworks">
+        {% if artworks_search %}
+        {% for artwork in artworks_search %}
+        <div class="artwork">
+            <img src="{{ artwork.artwork_url }}">
+            <h4>Name: {{ artwork.title }}</h4>
+            <h5>Owner: {{ artwork.owner.username }}</h5>
+            <h6>Price: {{ artwork.price }}</h6>
+            <a href="{{ artwork.owner.username }}/artworks/{{ artwork.id }}" class="btn-log">View Artwork</a>
+        </div>
+        {%endfor %}
+        {% else %}
+        <h4>No artworks match the search word</h4>
+        {% endif %}
+    </div>  
+</div>
+{% endblock %}

@@ -3,15 +3,38 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 20px;
+    flex-flow: row;
+    margin: 0px 20px 10px 20px;
+}
+header .menu-items {
+    color: #C53678;
+    font-size: 22px;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+}
+header a.menu-items::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 4px;
+    border-radius: 4px;
+    background: #C53678;
+    transition: width 0.5s ease;
+}
+header a.menu-items:hover::after {
+    width: 100%;
+    cursor: pointer;
 }
 header h4 {
     font-size: 22px;
     font-weight: 600;
     color: #FF5841;
 }
-header #head-title, header i.fa-bars {
-    font-size: 50px;
+header #head-title {
+    font-size: 60px;
     font-weight: 600;
     color: #C53678;
     cursor: pointer;
@@ -19,12 +42,17 @@ header #head-title, header i.fa-bars {
 }
 header i.fa-bars {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    transition: right 2s ease;
+    top:90px;
+    left: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #C53678;
+    cursor: pointer;
+    text-decoration: none;
+    transition: left 2s ease;
 }
-header i.fa-cart-shopping {
-	font-size: 50px;
+header i.fa-star {
+	font-size: 30px;
     font-weight: 600;
     color: #C53678;
     cursor: pointer;
@@ -32,15 +60,15 @@ header i.fa-cart-shopping {
 
 }
 header i.move-bar-icon {
-    right: 320px;
+    left: 320px;
     z-index: 2;
 }
 .container-head {
-    width: 300px;
-    height: 650px;
+    min-width: 300px;
+    min-height: 250px;
     position: absolute;
-    right: 0px;
-    top: 0;
+    left: 0px;
+    top: 90px;
     box-shadow: -10px 10px 10px #000000;
     display: flex;
     align-items: left;
@@ -50,7 +78,7 @@ header i.move-bar-icon {
     border-radius: 4px;
     transform: scale(0);
     transition: all 2s ease;
-    transform-origin: top right;
+    transform-origin: top left;
 }
 .container-visible {
     transform: scale(1);
@@ -62,7 +90,7 @@ header i.move-bar-icon {
 }
 .header-nav a {
     color: #FFF;
-    font-size: 26px;
+    font-size: 22px;
     text-decoration: none;
     font-weight: 600;
     padding: 4px;
@@ -73,4 +101,32 @@ nav a:hover {
     background: #FFF;
     color: #C53678;
     border-radius: 6px;
+}
+
+.search {
+    border-radius: 20px;
+    border: 2px solid #C53678;
+    width: 400px;
+    transform: translateX(100%) translateY(-60%);
+    padding: 5px 10px;
+    position: relative;
+}
+.search input {
+    border: none;
+    outline: none;
+    font-weight: 500;
+    color: #000000;
+    font-size: 18px;
+}
+.search button {
+    right: 5px;
+    position: absolute;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+.search button i {
+    color: #FF5841;
+    background: transparent;
+    font-size: 22px;
 }

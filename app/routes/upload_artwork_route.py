@@ -53,7 +53,6 @@ def upload_artwork(username):
         except Exception as e:
             db.session.rollback()  # Roll back the transaction on error
             flash(f"Error adding artwork: {str(e)}", category="danger")
-    else:
-        flash('You can upload your artwork here', category='info')
+
 
     return render_template('upload_image.html', form=form)

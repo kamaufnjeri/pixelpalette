@@ -7,4 +7,4 @@ from flask_login import logout_user
 def user_logout():
     logout_user()
     flash("You've been logged out", category="success")
-    return redirect(url_for('home'))
+    return redirect(url_for('view_artworks'))

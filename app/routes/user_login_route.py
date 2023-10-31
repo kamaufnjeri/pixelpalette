@@ -4,6 +4,7 @@ from app.forms import LoginForm
 from flask import flash, redirect, url_for, render_template
 from flask_login import login_user
 
+
 @app.route("/user_login", methods=["GET", "POST"])
 def user_login():
     form = LoginForm()

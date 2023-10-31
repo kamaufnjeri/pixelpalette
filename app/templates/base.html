@@ -20,18 +20,32 @@
     </head>
     <body>
         <header>
-            <a href="{{ url_for('home') }}" id="head-title">PixelPallete</a>
+            <a href="{{ url_for('view_artworks') }}" id="head-title">PixelPallete</a>
+            <a href="{{ url_for('view_artworks') }}" class="menu-items">Artworks</a>
+            <a href="{{ url_for('exhibits') }}" class="menu-items">Exhibits</a>
+            <a href="{{ url_for('artists_page') }}" class="menu-items">Artists</a>
 			{% if current_user.is_authenticated %}
-            <h4>@{{ current_user.username }}</h4>
-			<a href="{{ url_for('shopping_cart', username=current_user.username, id=current_user.cart.id) }}">
-				<i class="fa-regular fa-cart-shopping"></i>
+            <h4>Hi @{{ current_user.username }}!</h4>
+			<a href="{{ url_for('cart', username=current_user.username, id=current_user.cart.id) }}">
+				<i class="fa-solid fa-star"></i>
 			</a>
-			{% endif %}
+            <a href="{{ url_for('user_logout') }}" class="menu-items">Logout</a>
             <i class="fa-solid fa-bars" id="menu-bar"></i>
+            {% else %}
+            <a class="menu-items" href="{{ url_for('create_user') }}">Sign Up</a>
+            <a class="menu-items" href="{{ url_for('user_login') }}">Login</a>
+			{% endif %}
+            <a class="menu-items" href="#">About</a>
+            <a class="menu-items" href="#">Contact</a>
+            
             {% include "header.html" %}
             {% include "popupdelete.html" %}
         </header>
         <main>
+            <form action="{{ url_for('search_function') }}" method="POST" class="search">
+                <input type="text" name="search-word" placeholder="Enter name of artwork to search">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
             {% with messages = get_flashed_messages(with_categories=True) %}
             {% if messages %}
             {% for category, message in messages %}

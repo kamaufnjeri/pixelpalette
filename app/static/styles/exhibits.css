@@ -1,4 +1,4 @@
-.exhibit-container {
+.exhibit-container, .exhibits-info {
     width: 100%;
     min-height: 100vh;
     background: #fff;
@@ -7,53 +7,79 @@
     justify-content: center;
     flex-flow: column;
     overflow: hidden;
-    }
+    margin-top: -20px;
+}
 
-    .artwork-wrapper {
-        position: relative;
-        width: 800px;
-        height: 700px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 20px;
-        overflow: hidden;
-        background-color: #000;
-        color: white;
-        border-radius: 6px;
-    }
+.exhibits-info h4 {
+    font-size: 22px;
+    font-weight: 500;
+}
+.exhibits-info h5 {
+    font-weight: 400;
+    font-size: 20px;
+}
+.exhibits-info span {
+    font-weight: 700;
+}
+.artwork-wrapper {
+    position: relative;
+    width: 800px;
+    height: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+    color: white;
+    border-radius: 6px;
+}
 
-    .slides {
-        position: absolute;
-        height: 90%;
-        left: 0;
-        top: 0;
-        display: flex;
-        align-items: center;
-        flex-flow: row;
-        transition: left 0.5s ease;
-        overflow: hidden;
-    }
+.slides {
+    position: absolute;
+    height: 90%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    flex-flow: row;
+    transition: left 0.5s ease;
+    overflow: hidden;
+}
 
-    .slide {
-        display: flex;
-        width: 800px;
-        align-items: center;
-        justify-content: space-around;
-        transition: left 0.5s ease;
-    }
+.slide {
+    display: flex;
+    width: 800px;
+    align-items: center;
+    justify-content: space-around;
+    transition: left 0.5s ease;
+}
 
-    .slides .slides-info {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-flow: column;
+.slides .slides-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    margin: 20px;
+}
+.slide .slides-info h4 {
+    font-weight: 500;
+    font-size: 22px;
+    text-align: center;
+}
+    .slide .slides-info h5 {
+        color: #C53678;
+        font-size: 20px;
+        font-weight: 500;
     }
-    
+    .slides-info span {
+        font-weight: 700;
+    }
     .slides img {
         width: 400px;
-        height: 600px;
+        height: 500px;
         border-radius: 4px;
+        border: 2px solid #FF5841;
+        margin: 30px;
     }
     
     .artwork-indicators {
@@ -83,18 +109,53 @@
         transition: 0.5s;
         cursor: pointer;
         color: #FF5841;
+        font-size: 22px;
     }
     #prev-button:hover, #next-button:hover {
         background: rgba(255, 255, 255, 0.9);
     }
     #prev-button {
-        left: 20px;
+        left: 10px;
     }
     #next-button {
-        right: 20px;
+        right: 10px;
     }
     
     .active {
         background: white;
         transform: scale(1.1);
+    }
+
+    .exhibits {
+        display: flex;
+        align-items: center;
+        flex-flow: column;
+        border-radius: 6px;
+        border: 2px solid #FF5841;
+        padding: 20px;
+    }
+    .exhibit {
+        display: flex;
+        align-items: flex-start;
+        flex-flow: column;
+        border: 2px solid #C53678;
+        border-radius: 6px;
+        width: 600px;
+        padding: 10px;
+        margin: 20px;
+        min-height: 140px;
+    }
+    .exhibit h4 {
+        font-weight: 600;
+        font-size: 22px;
+    }
+    .exhibit h5 {
+        font-weight: 500;
+        font-size: 20px;
+    }
+    .exhibit span {
+        color: red;
+        font-weight: 600;
+        font-size: 22px;
+        font-style: italic;
     }

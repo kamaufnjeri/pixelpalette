@@ -3,13 +3,9 @@
 Exhibits
 {% endblock %}
 {% block content %}
-
 <div class="exhibit-container">
-    <div>
-
-        {% if exhibit %}
-        <h4>{{ exhibit.name }}</h4>
-        <h4>{{ exhibit.description }}</h4>
+    <div class="exhibits-info">
+        {% if exhibit and time_frame %}
         <div class="artwork-wrapper" id="artwork-wrapper">
             <i class="fa-solid fa-chevron-left fa-2x" id="prev-button"></i>
             <i class="fa-solid fa-chevron-right fa-2x" id="next-button"></i>
@@ -17,9 +13,8 @@ Exhibits
             {% for exhibit_artwork in exhibit.exhibit_artworks %}
             <div class="slide">
                 <div class="slides-info">
-                    <h4>{{ exhibit_artwork.artwork.title }}</h4>
-                    <h4>{{ exhibit_artwork.artwork.description }}</h4>
-                    <h4>{{ exhibit_artwork.artwork.price }}</h4>
+                    <h4><span>Name: </span>{{ exhibit_artwork.artwork.title }}</h4>
+                    <h5><span>Price: </span>Kshs. {{ exhibit_artwork.artwork.price }}</h5>
                 </div>
                 <img src="{{ exhibit_artwork.artwork.artwork_url }}" >
             </div>
@@ -31,10 +26,9 @@ Exhibits
                 {% endfor %}
             </div>
         </div>
-        
+        <h4><span>Exhibit Name: </span>{{ exhibit.name }}</h4>
+        <h5><span>Description: </span>{{ exhibit.description }}</h5>
         {% endif %}
     </div>
 </div>
-
-
 {% endblock %}
