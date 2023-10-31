@@ -61,7 +61,7 @@ def add_exhibit(username):
                 return redirect(url_for('add_exhibit', username=username))
         else:
             # User has an existing exhibition, check if it's before the end date.
-            if existing_exhibit.end_date > current_date:
+            if existing_exhibit.end_date > current_date and existing_exhibit.exhibit_artworks != []:
                 flash("You already have an ongoing exhibition. You can create an exhibit after the current one ends.", category="danger")
                 return redirect(url_for('user_dashboard', username=username))
             else:

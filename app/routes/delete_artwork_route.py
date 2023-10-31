@@ -1,5 +1,5 @@
 from app import app, db
-from app.models import Artwork
+from app.models import Artwork, PurchaseItem, Exhibit_Artwork
 from flask import request, flash
 from flask_login import login_required, current_user
 from flask import redirect, url_for
@@ -12,6 +12,14 @@ def delete_artwork(id):
     if id:
         if request.method == "POST":
             try:
+                cart_items = PurchaseItem.query.filter_by(artwork_id=artwork.id).all()
+                exhibit_artworks = Exhibit_Artwork.query.filter_by(artwork_id=artwork.id).all()
+                for cart_item in cart_items:
+                    db.session.delete(cart_item)
+                
+                for exhibit_artwork in exhibit_artworks:
+                    db.session.delete(exhibit_artwork)
+                    
                 db.session.delete(artwork)
                 db.session.commit()
                 flash("Artwork successfully deleted", category="success")
