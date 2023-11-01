@@ -26,12 +26,7 @@ def edit_artwork(id):
                     flash("Price should be an number", category="danger")
                 artwork.title = form.title.data
                 artwork.description = form.description.data
-<<<<<<< HEAD
-                artwork.price = float(form.price.data)
-=======
                 artwork.price = price
->>>>>>> befe7cc36126c6f4d13da6d29662277def9508b0
-
                 db.session.commit()
                 flash('Artwork updated successfully', category='success')
                 return redirect(url_for('user_dashboard', username=artwork.owner.username))
