@@ -50,6 +50,14 @@ class ArtworkForm(FlaskForm):
         ],
             validators=[DataRequired()]
     )
+    type = SelectField(
+        label='Type of Artwork:',
+        choices=[
+            ('general_artwork', 'General Artwork'),
+            ('exhibit_artwork', 'Exhihibit Artwork')
+        ],
+            validators=[DataRequired()]
+    )
     image = FileField('Choose image:', validators=[
             FileRequired(),
             FileAllowed('Images only! (JPEG, JPG, PNG)', ['jpg', 'png', 'jpeg'])

@@ -2,7 +2,8 @@ from app import app, db
 from flask import render_template, request, flash, redirect, url_for
 from app.methods import Methods
 from app.models import ShoppingCart, Artwork, PurchaseItem
-from flask_login import current_user
+from flask_login import current_user, login_required
+from datetime import datetime
 
 
 @app.route("/artworks")
@@ -95,7 +96,22 @@ def search_function():
 
     return render_template("search.html")
 
-
-
-
-
+# change an artwork from an exhibit artwork to a general artwork
+@app.route("/add_to_general_artworks/<int:id>", methods=["POST"])
+@login_required
+def add_to_general_artworks(id):
+    if request.method == "POST":
+        artwork = Artwork.query.filter_by(id=id).first()
+        exhibit = current_user.exhibits
+        current_date = datetime.now()
+        if artwork:
+            if exhibit and current_date < exhibit.end_date:
+                flash("The current exhibit has not ended", category="danger")
+                return redirect(url_for('user_dashboard', username=current_user.username))
+            artwork.type = "general_artwork"
+            db.session.commit()
+            flash("Successfully added artwork to general artworks", category="success")
+            return redirect(url_for('user_dashboard', username=current_user.username))
+        else:
+            flash("Artwork not found", category="danger")
+            return redirect(url_for('user_dashboard', username=current_user.username))

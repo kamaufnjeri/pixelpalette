@@ -21,7 +21,7 @@ def edit_artwork(id):
                 # Update the artwork with the new values
                 artwork.title = form.title.data
                 artwork.description = form.description.data
-                artwork.price = form.price.data
+                artwork.price = float(form.price.data)
 
                 db.session.commit()
                 flash('Artwork updated successfully', category='success')

@@ -17,7 +17,7 @@ def exhibits():
     return render_template("exhibits.html", current_exhibits=current_exhibits)
 
 
-"""ROute to see exhibits artworks"""
+"""Route to see exhibits artworks"""
 @app.route("/exhibits/<int:id>")
 def view_exhibits(id):
     exhibit = Exhibits.query.filter_by(id=id).first()
@@ -90,7 +90,7 @@ def add_exhibit(username):
     return render_template('add_exhibit.html')
 
 
-
+# adding an artwork to an exhibit
 @app.route("/add_artwork_to_exhibit/<int:id>", methods=["POST", "GET"])
 @login_required
 def add_artwork_to_exhibit(id):
@@ -134,6 +134,7 @@ def add_artwork_to_exhibit(id):
                 return redirect(url_for('user_dashboard', username=current_user.username))
 
 
+# removing an artwork from an exhibit
 @app.route("/remove_from_exhibit/<int:artwork_id>", methods=["POST", "GET"])
 @login_required
 def remove_from_exhibit(artwork_id):

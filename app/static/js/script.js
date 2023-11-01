@@ -1,14 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
     const headerNav = document.querySelector('.container-head');
     const barIcon = document.getElementById('menu-bar');
+    const navBarIcon = document.getElementById('nav-bar');
     
     
-    // deals with revealing and hiding the header items
+    // deals with revealing the menu bar items
     if (barIcon) {
         barIcon.addEventListener('click', () => {
-            headerNav.classList.toggle('container-visible');
-            barIcon.classList.toggle('move-bar-icon');
+            headerNav.classList.add('container-visible');
          });
 
+    }
+    // deals with hiding the menu bar item
+    if (navBarIcon) {
+        navBarIcon.addEventListener('click', () => {
+            headerNav.classList.remove('container-visible');
+         });
     }
 });

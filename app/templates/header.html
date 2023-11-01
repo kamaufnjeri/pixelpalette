@@ -1,6 +1,10 @@
 {% if current_user.is_authenticated %}
 <div class="container-head">
     <nav class="header-nav">
+        <div class="nav-head">
+            <i class="fa-solid fa-bars" class="nav-bar" id="nav-bar"></i>
+            <a href="{{ url_for('view_artworks') }}" class="nav-title">PixelPallete</a>
+        </div>
             {% if current_user.category == 'artist' %}
                 <a href="{{ url_for('upload_artwork', username=current_user.username) }}">
                     Add An Artwork

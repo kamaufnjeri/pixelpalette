@@ -20,6 +20,9 @@
     </head>
     <body>
         <header>
+            {% if current_user.is_authenticated %}
+            <i class="fa-solid fa-bars" id="menu-bar"></i>
+            {% endif %}
             <a href="{{ url_for('view_artworks') }}" id="head-title">PixelPallete</a>
             <a href="{{ url_for('view_artworks') }}" class="menu-items">Artworks</a>
             <a href="{{ url_for('exhibits') }}" class="menu-items">Exhibits</a>
@@ -30,7 +33,6 @@
 				<i class="fa-solid fa-star"></i>
 			</a>
             <a href="{{ url_for('user_logout') }}" class="menu-items">Logout</a>
-            <i class="fa-solid fa-bars" id="menu-bar"></i>
             {% else %}
             <a class="menu-items" href="{{ url_for('create_user') }}">Sign Up</a>
             <a class="menu-items" href="{{ url_for('user_login') }}">Login</a>
