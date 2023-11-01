@@ -164,3 +164,19 @@ def remove_from_exhibit(artwork_id):
             flash("Artwork not in exhibit", category="danger")
             return redirect(url_for('user_dashboard', username=current_user.username))
 
+
+@app.route('/delete_exhibit/<int:id>', methods=["GET", 'POST'])
+@login_required
+def delete_exhibit(id):
+    exhibit = Exhibits.query.filter_by(id=id).first()
+    if exhibit:
+        if exhibit.exhibit_artworks != []:
+            for exhibit_artwork in exhibit.exhibit_artworks:
+                db.session.delete(exhibit_artwork)
+        db.session.delete(exhibit)
+        db.session.commit()
+        flash("Successfully deleted exhibit", category="success")
+        return redirect(url_for('user_dashboard', username=current_user.username))
+    else:
+        flash("No exhibit", category="danger")
+        return redirect(url_for('user_dashboard', username=current_user.username))

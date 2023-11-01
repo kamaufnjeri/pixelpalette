@@ -78,6 +78,23 @@
                         {% endif%}
                     </div>
                 </div>
+                {% if exhibit %}
+                <div class="account">
+                    <h3><span>Exhibit name: </span>{{ exhibit.name }}</h3>
+                    <h4><span>Start date: </span>{{ exhibit.start_date }}</h4>
+                    <h4><span>End date: </span>{{ exhibit.end }}</h4>
+                    <div class="account-details">
+                        {% if exhibit.exhibit_artworks != [] %}
+                        {% for exhibit_artwork in exhibit.exhibit_artworks %}
+                        <h4><span>Artwork Name: </span>{{ exhibit_artwork.artwork.title }}</h4>
+                        {% endfor %}
+                        <a href="{{ url_for('delete_exhibit', id=exhibit.id) }}" class="btn-log">
+                            Delete exhibit
+                        </a>
+                        {% endif%}
+                    </div>
+                </div>
+                {% endif %}
             </div>
     </div>
 </div>
