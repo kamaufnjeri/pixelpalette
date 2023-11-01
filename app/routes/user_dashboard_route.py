@@ -9,6 +9,7 @@ from app.models import User
 def user_dashboard(username):
     user = User.query.filter_by(username=username).first()
     my_artworks = []
+    exhibit = user.exhibits
     try:
         if user.category == 'artist':
             my_artworks = user.owner_artworks
@@ -16,4 +17,4 @@ def user_dashboard(username):
     except Exception:
         flash("User does not exist", category="danger")
 
-    return render_template("user_dashboard.html", my_artworks=my_artworks)
+    return render_template("user_dashboard.html", my_artworks=my_artworks, exhibit=exhibit)
