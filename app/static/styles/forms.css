@@ -1,0 +1,92 @@
+.inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 600px;
+    height: 500px;
+    border-radius: 6px;
+    padding-top: 60px;
+    background: #FF5841;
+    color: #fff;
+    position: relative;
+    padding-bottom: 20px;
+    margin-top: 40px;
+}
+.login-container {
+    height: 350px;
+}
+.upload-container {
+    height: 450px;
+}
+.inner-container i {
+    position: absolute;
+    left: 250px;
+    top: -70px;
+    margin-top: 20px;
+    color: #C53678;
+    font-size:65px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: -10px 5px 15px #000;
+}
+.inner-container h3 {
+    font-size: 24px;
+}
+.input-field {
+    display: flex;
+    justify-content: space-between;
+}
+.label {
+    margin: 3px;
+    font-size: 22px;
+}
+.input, #image {
+    padding: 5px;
+    margin: 3px;
+    width: 250px;
+    height: 32px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 16px;
+}
+.text-area {
+    height: 100px;
+}
+.redirect {
+    text-align: center;
+    margin: 5px;
+}
+.redirect a {
+    text-decoration: none;
+    color: #C53678;
+    font-size: 20px;
+    font-weight: 600;
+}
+.redirect a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.btn-log {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    background: #C53678;
+    border: none;
+    border-radius: 4px;
+    justify-content: center;
+    margin-left: 150px;
+    margin-bottom: 10px;
+}
+.btn-login {
+    margin-left: 120px;
+}

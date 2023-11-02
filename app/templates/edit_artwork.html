@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Artwork
+{% endblock %}
+{% block content %}
+{% if artwork %}
+<div class="body-container">
+    <div class="inner-container">
+        <i class="fa-solid fa-user-pen"></i>
+        <h3>Edit Artwork Info</h3>
+        <div class="form-container">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="input-field">
+                    {{ form.title.label(class="label") }}
+                    {{ form.title(value=artwork.title, class="input") }}
+                </div>
+                
+                <div class="input-field">
+                    {{ form.description.label(class="label") }}
+                    {{ form.description(value=artwork.description, class="input text-area") }}
+                </div>
+                <div class="input-field">
+                    {{ form.price.label(class="label") }}
+                    {{ form.price(value=artwork.price, class="input") }}
+                </div>
+                <div class="button-field">
+                    {{ form.submit(class="btn-log") }}
+                </div>
+            </form>
+            <button class="btn-log" id="delete-artwork-btn">Delete Artwork</button>
+           
+        </div>
+    </div>
+</div>
+<div id="delete-artwork">
+    <h4>Are you sure you want to delete <span>{{ artwork.title }}</span>?</h4>
+    <p>If yes click yes, else click no</p>
+    <div class="buttons-container">
+        <form method="POST" action="{{ url_for('delete_artwork', id=artwork.id) }}" id="delete-artwork-form">
+            <button class="btn danger" id="yes-artwork">yes</button>
+        </form>
+        <button class="btn info" id="no-artwork">no</button>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

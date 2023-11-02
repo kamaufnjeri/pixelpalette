@@ -15,8 +15,12 @@ migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 cors = CORS(app)
-login_manager.login_view = "login_user"
+login_manager.login_view = "user_login"
 login_manager.login_message = "info"
 
 
-from app import routes, apis
+from app.routes import artworks_route, cart_route, create_user_route, exhibits_route
+from app.routes import upload_artwork_route, user_dashboard_route, user_delete_route
+from app.routes import user_login_route, user_logout_route, user_profile_route
+from app.routes import delete_artwork_route, edit_artwork_route
+from app import apis

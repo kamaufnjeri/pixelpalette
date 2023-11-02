@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+My profile
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <div class="inner-container">
+        <i class="fa-solid fa-user"></i>
+        <h3>My profile</h3>
+        <div class="form-container">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="input-field">
+                    {{ form.username.label(class="label") }}
+                    {{ form.username(value=current_user.username, class="input") }}
+                </div>
+                
+                <div class="input-field">
+                    {{ form.first_name.label(class="label") }}
+                    {{ form.first_name(value=current_user.first_name, class="input") }}
+                </div>
+                
+                <div class="input-field">
+                    {{ form.last_name.label(class="label") }}
+                    {{ form.last_name(value=current_user.last_name, class="input") }}
+                </div>
+
+                <div class="input-field">
+                    {{ form.email_address.label(class="label") }}
+                    {{ form.email_address(value=current_user.email_address, class="input") }}
+                </div>
+                <div class="input-field">
+                    {{ form.password1.label(class="label") }}
+                    {{ form.password1(class="input") }}
+                </div>
+                <div class="button-field">
+                    {{ form.submit(class="btn-log") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
