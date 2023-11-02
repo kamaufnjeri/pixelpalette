@@ -35,7 +35,7 @@ Edit Artwork
     </div>
 </div>
 <div id="delete-artwork">
-    <h4>Are you sure you want to delete the <span>{{ artwork.title }}</span>?</h4>
+    <h4>Are you sure you want to delete <span>{{ artwork.title }}</span>?</h4>
     <p>If yes click yes, else click no</p>
     <div class="buttons-container">
         <form method="POST" action="{{ url_for('delete_artwork', id=artwork.id) }}" id="delete-artwork-form">

@@ -42,4 +42,19 @@ document.addEventListener("DOMContentLoaded", function () {
             deleteArtwork.style.display = "block";
         });
     }
+    const deleteExhibit = document.getElementById('delete-exhibit');
+    const noBtnExhibit = document.getElementById('no-exhibit');
+    const yesBtnExhibit = document.getElementById('yes-exhibit');
+    const deleteBtnExhibit = document.getElementById('delete-exhibit-btn');
+    console.log(deleteExhibit)
+
+    if (yesBtnExhibit && noBtnExhibit && deleteBtnExhibit) {
+        noBtnExhibit.addEventListener("click", () => {
+            // This should simply hide the delete confirmation box, not submit the form
+            deleteExhibit.style.display = "none";
+        });
+        deleteBtnExhibit.addEventListener("click", () => {
+            deleteExhibit.style.display = "block";
+        });
+    }
 });

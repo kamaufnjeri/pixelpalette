@@ -170,6 +170,11 @@ def remove_from_exhibit(artwork_id):
 def delete_exhibit(id):
     exhibit = Exhibits.query.filter_by(id=id).first()
     if exhibit:
+        current_date = datetime.now()
+        if current_date >= exhibit.start_date and current_date <= exhibit.end_date:
+            flash("Exhibition is ongoing", category="danger")
+            return redirect(url_for('user_dashboard', username=current_user.username))
+
         if exhibit.exhibit_artworks != []:
             for exhibit_artwork in exhibit.exhibit_artworks:
                 db.session.delete(exhibit_artwork)
