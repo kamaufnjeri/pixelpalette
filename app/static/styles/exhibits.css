@@ -159,3 +159,22 @@
         font-size: 22px;
         font-style: italic;
     }
+
+#delete-exhibit {
+    display: none;
+    width: 320px;
+    background: #C53678;
+    border-radius: 6px;
+    padding: 5px;
+    color: #fff;
+    box-shadow: -15px 5px 5px #000;
+}
+
+#delete-exhibit .quiz{
+    font-size: 16px;
+    font-weight: 400;
+}
+#delete-exhibit a {
+    text-decoration: none;
+    text-align: center;
+}

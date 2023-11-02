@@ -16,30 +16,20 @@ My Shopping Cart
 
             <div class="cart-item-info">
 				<h4>Name: {{ cart_item.artwork.title }}</h4>
-				<h5>Username: {{ cart_item.artwork.owner.username }}</h5>
+				<h5>Owner: {{ cart_item.artwork.owner.username }}</h5>
 				<h6>Description: {{ cart_item.artwork.description }}</h6>
 				<p>Category: {{ cart_item.artwork.category }}</p>
             </div>
-
             <div class="cart-item-price">
                 <h4>Price: Kshs. {{ cart_item.artwork.price }}</h4>
-				<div class="change-quantity">
+				<form action="{{ url_for('update_cart_quantity', id=cart_item.id) }}" method="POST">
 					<p>Quantity: </p>
-
-				    <form action="{{ url_for('update_cart_quantity', id=cart_item.id) }}" method="POST">
-					    <input type="number" class="quantity" name="quantity" value="{{ cart_item.quantity }}" min=1 max=100>
-					    <input type="submit" class="checkout-button info" value="Change quantity">
-
-			        </form>
-					<form action="{{ url_for('remove_item_from_cart', id=cart_item.id) }}" method="POST">
-						<input type="submit" class="checkout-button danger" value="Remove from cart">
-
-					</form>
-				</div>
-
-
-
-
+				    <input type="number" class="quantity" name="quantity" value="{{ cart_item.quantity }}" min=1 max=100>
+				    <input type="submit" class="checkout-button info" value="Change quantity">
+			    </form>
+				<form action="{{ url_for('remove_item_from_cart', id=cart_item.id) }}" method="POST">
+					<input type="submit" class="checkout-button danger" value="Remove from cart">
+				</form>
             </div>
         </div>
     {% endfor %}

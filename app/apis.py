@@ -38,7 +38,7 @@ def all_artworks():
         artworks = []
         if all_artworks:
             for art in all_artworks:
-                if art.owner:
+                if art.owner and art.type == 'general_artwork':
                     artwork = {
                         "title": art.title,
                         "owner": art.owner.username,

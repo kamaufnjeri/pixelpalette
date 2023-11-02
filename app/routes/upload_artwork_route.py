@@ -17,6 +17,7 @@ def upload_artwork(username):
             description = form.description.data
             category = form.category.data
             image = form.image.data
+            type = form.type.data
             methods = Methods()
             image_url = methods.image_upload(image)
             user = User.query.filter_by(username=username).first()
@@ -25,7 +26,7 @@ def upload_artwork(username):
                 price = float(form.price.data)
 
             except Exception:
-                flash("Ensure the price is a number/integer", category="danger")
+                flash("Ensure the price is a number", category="danger")
 
 
             if Artwork.query.filter_by(title=title).first() is not None:
@@ -38,6 +39,7 @@ def upload_artwork(username):
                         title=title,
                         description=description,
                         price=price,
+                        type=type,
                         category=category,
                         artwork_url=image_url,
                         owner_id=user.id

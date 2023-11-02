@@ -19,16 +19,20 @@ def edit_artwork(id):
         if form.validate_on_submit():
             try:
                 # Update the artwork with the new values
+                
+                try:
+                    price = float(form.price.data)
+                except Exception:
+                    flash("Price should be an number", category="danger")
                 artwork.title = form.title.data
                 artwork.description = form.description.data
-                artwork.price = form.price.data
-
+                artwork.price = price
                 db.session.commit()
                 flash('Artwork updated successfully', category='success')
                 return redirect(url_for('user_dashboard', username=artwork.owner.username))
             except Exception as e:
                 db.session.rollback()
-                flash(f"Error updating artwork: {str(e)}", category="danger")
+                flash(f"Error updating artwork", category="danger")
 
         # Prepopulate the form fields with the artwork data
         form.title.data = artwork.title

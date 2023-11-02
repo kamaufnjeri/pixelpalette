@@ -27,6 +27,10 @@ Upload Artwork
                     {{ form.category(class="input") }}
                 </div>
                 <div class="input-field">
+                    {{ form.type.label(class="label") }}
+                    {{ form.type(class="input", placeholder="TYpe") }}
+                </div>
+                <div class="input-field">
                     {{ form.image.label(class="label") }}
                     {{ form.image() }}
                 </div>

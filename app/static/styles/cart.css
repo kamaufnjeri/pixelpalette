@@ -64,8 +64,7 @@
 }
 .cart-item-info p {
 	font-size: 18px;
-	font-weight: 500;
-	
+	font-weight: 500;	
 }
 
 
@@ -79,12 +78,16 @@
 .cart-item-price p {
 	font-weight: 500;
 	font-size: 20px;
-	text-align: right;
+	text-align: left;
 	margin-top: 20px;
-
-
-
 }
+.cart-item-price form {
+	display: flex;
+	flex-flow: row;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
 /* Style the cart total section */
 .cart-total {
     padding-top: 10px;
@@ -115,9 +118,4 @@
     display: block;
     margin: 10px 0px 0px 10px;
 }
-.change-quantity, .change-quantity form {
-	display: flex;
-	flex-flow: row;
 
-
-}

@@ -17,7 +17,7 @@ def exhibits():
     return render_template("exhibits.html", current_exhibits=current_exhibits)
 
 
-"""ROute to see exhibits artworks"""
+"""Route to see exhibits artworks"""
 @app.route("/exhibits/<int:id>")
 def view_exhibits(id):
     exhibit = Exhibits.query.filter_by(id=id).first()
@@ -61,7 +61,7 @@ def add_exhibit(username):
                 return redirect(url_for('add_exhibit', username=username))
         else:
             # User has an existing exhibition, check if it's before the end date.
-            if existing_exhibit.end_date > current_date:
+            if existing_exhibit.end_date > current_date and existing_exhibit.exhibit_artworks != []:
                 flash("You already have an ongoing exhibition. You can create an exhibit after the current one ends.", category="danger")
                 return redirect(url_for('user_dashboard', username=username))
             else:
@@ -90,7 +90,7 @@ def add_exhibit(username):
     return render_template('add_exhibit.html')
 
 
-
+# adding an artwork to an exhibit
 @app.route("/add_artwork_to_exhibit/<int:id>", methods=["POST", "GET"])
 @login_required
 def add_artwork_to_exhibit(id):
@@ -134,6 +134,7 @@ def add_artwork_to_exhibit(id):
                 return redirect(url_for('user_dashboard', username=current_user.username))
 
 
+# removing an artwork from an exhibit
 @app.route("/remove_from_exhibit/<int:artwork_id>", methods=["POST", "GET"])
 @login_required
 def remove_from_exhibit(artwork_id):
@@ -163,3 +164,24 @@ def remove_from_exhibit(artwork_id):
             flash("Artwork not in exhibit", category="danger")
             return redirect(url_for('user_dashboard', username=current_user.username))
 
+
+@app.route('/delete_exhibit/<int:id>', methods=["GET", 'POST'])
+@login_required
+def delete_exhibit(id):
+    exhibit = Exhibits.query.filter_by(id=id).first()
+    if exhibit:
+        current_date = datetime.now()
+        if current_date >= exhibit.start_date and current_date <= exhibit.end_date:
+            flash("Exhibition is ongoing", category="danger")
+            return redirect(url_for('user_dashboard', username=current_user.username))
+
+        if exhibit.exhibit_artworks != []:
+            for exhibit_artwork in exhibit.exhibit_artworks:
+                db.session.delete(exhibit_artwork)
+        db.session.delete(exhibit)
+        db.session.commit()
+        flash("Successfully deleted exhibit", category="success")
+        return redirect(url_for('user_dashboard', username=current_user.username))
+    else:
+        flash("No exhibit", category="danger")
+        return redirect(url_for('user_dashboard', username=current_user.username))

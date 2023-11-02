@@ -4,23 +4,49 @@
 {% endblock %}
 {% block content %}
 <div class="body-container">
-        {% if my_artworks %}
+    {% if my_exhibit_artworks %}
+    <div class="artist-artworks my-artworks">
+        <h3>My Exhibit Artworks</h3>
+        {% for artwork in my_exhibit_artworks %}
+        <div class="artwork">
+            <img src="{{ artwork.artwork_url }}">
+            <h4>Name: {{ artwork.title }}</h4>
+            <h6>Price: {{ artwork.price }}</h6>
+            <div class="btn-field">
+                <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-dash">
+                    Add to Exhibit
+                </a>
+                <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-dash">
+                    Edit
+                </a>
+                <form action="{{ url_for('add_to_general_artworks', id=artwork.id) }}" method="POST">
+                    <button type="submit" class="btn-dash">Add to General Artworks</button>
+                </form>
+                <form action="{{ url_for('remove_from_exhibit', artwork_id=artwork.id) }}" method="POST">
+                    <button type="submit" class="btn-dash">Remove from Exhibit</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+        {% if my_general_artworks %}
         <div class="artist-artworks my-artworks">
-            <h3>My Artworks</h3>
-            {% for artwork in my_artworks %}
+            <h3>My General Artworks</h3>
+            {% for artwork in my_general_artworks %}
             <div class="artwork">
                 <img src="{{ artwork.artwork_url }}">
                 <h4>Name: {{ artwork.title }}</h4>
                 <h6>Price: {{ artwork.price }}</h6>
                 <div class="btn-field">
-                    <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-dash success row">
+                    <a href="{{ url_for('add_artwork_to_exhibit', id=artwork.id) }}" class="btn-dash">
                         Add to Exhibit
                     </a>
-                    <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-dash info row">
+                    <a href="{{ url_for('edit_artwork', id=artwork.id) }}" class="btn-dash">
                         Edit
                     </a>
                     <form action="{{ url_for('remove_from_exhibit', artwork_id=artwork.id) }}" method="POST">
-                        <button type="submit" class="btn-dash danger">Remove from Exhibit</button>
+                        <button type="submit" class="btn-dash">Remove from Exhibit</button>
                     </form>
                 </div>
             </div>
@@ -36,7 +62,7 @@
                         <h4><span>Name: </span>{{ current_user.first_name }} {{ current_user.last_name }}</h4>
                         <h5><span>Email: </span>{{ current_user.email_address }}</h5>
                         <h5><span>Category: </span>{{ current_user.category }}</h5>
-                        <a href="{{ url_for('user_profile', username=current_user.username) }}" class="btn-dash info">Edit</a>
+                        <a href="{{ url_for('user_profile', username=current_user.username) }}" class="btn-dash">Edit</a>
                     </div>
                 </div>
                 <div class="account">
@@ -52,6 +78,30 @@
                         {% endif%}
                     </div>
                 </div>
+                {% if exhibit %}
+                <div class="account">
+                    <h3><span>Exhibit name: </span>{{ exhibit.name }}</h3>
+                    <h4><span>Start date: </span>{{ exhibit.start_date }}</h4>
+                    <h4><span>End date: </span>{{ exhibit.end_date }}</h4>
+                    <div class="account-details">
+                        {% if exhibit.exhibit_artworks != [] %}
+                        {% for exhibit_artwork in exhibit.exhibit_artworks %}
+                        <h4><span>Artwork Name: </span>{{ exhibit_artwork.artwork.title }}</h4>
+                        {% endfor %}
+                        {% endif%}
+                        <button class="btn-dash" id="delete-exhibit-btn">Delete Exhibit</button>
+                        <div id="delete-exhibit">
+                            <h4 class="quiz">Are you sure you want to delete the exhibit <span>{{ exhibit.name }}</span>?</h4>
+                            <div class="buttons-container">
+                                <a href="{{ url_for('delete_exhibit', id=exhibit.id) }}" class="btn danger" id="yes-exhibit">
+                                    yes
+                                </a>
+                                <button class="btn info" id="no-exhibit">no</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
     </div>
 </div>
