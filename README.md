@@ -18,7 +18,7 @@ Visit the website and start exploring the diverse range of art showcased by tale
 ![Explore the page](screenshots/art.jpg)<br>
 
 3. Artist Interaction:<br>
-Engage with artists by leaving comments or expressing interest in purchasing their artworks. You can filter by categories provided and click on them to view individual arts.<br>
+You can filter by categories provided and click on them to view individual arts.<br>
 ![Interacting with arts](screenshots/search.jpg)<br>
 
 4. Uploading art:<br>
