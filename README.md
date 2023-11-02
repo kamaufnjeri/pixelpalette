@@ -38,7 +38,7 @@ You then need name your exhibition and specify for how long you want the exhibit
 After that you need to add you artwork to the exhibit by visiting your `My Artworks` page and adding to exhibit.<br>
 ![Adding art to exhibit](screenshots/exhibit.jpg)<br>
 You should see it appear in the Exhibits section of your page.<br>
-![Exhibits][screenshots/count.jpg]<br>
+![Exhibits](screenshots/count.jpg)<br>
 Additionally you can add an exhibit while uploading your media by chosing to upload to `exhibit artwork`.<br>
 ![Uploading to exhibit](screenshots/ty.jpg)<br>
 
