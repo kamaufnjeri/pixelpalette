@@ -67,13 +67,6 @@
 .my-artworks h3 {
     flex-basis: 100%;
 }
-
-footer {
-    margin-top: 30px;
-    margin-left: 20px;
-    font-size: 20px;
-    font-weight: 500;
-}
 .btn-field {
     padding: 10px;
     display: flex;
@@ -100,4 +93,11 @@ footer {
     cursor: pointer;
     background: #000;
     color: #fff;
+}
+
+footer {
+    margin-top: 30px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
 }
