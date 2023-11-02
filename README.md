@@ -35,11 +35,11 @@ Your items will appear in your cart.<br>
 As an artist, you might want to exhibit your work on the platform and you can do that by clicking on the hamburger button on the top left of your sccreen and selecting `Create An Exhibit`:<br>
 You then need name your exhibition and specify for how long you want the exhibit to run.<br>
 ![Creating an exhibit](screenshots/create.jpg)<br>
-After that you need to add you artwork to the exhibit by visiting your `My Artworks` page and adding to exhibit.<br>
+After that you need to add you artwork to the exhibit by visiting your `My Artworks` page and choosing from your artworks the artworks you wish to add to the exhibit<br>
 ![Adding art to exhibit](screenshots/exhibit.jpg)<br>
 You should see it appear in the Exhibits section of your page.<br>
 ![Exhibits](screenshots/count.jpg)<br>
-Additionally you can add an exhibit while uploading your media by chosing to upload to `exhibit artwork`.<br>
+Additionally you can choose to have an artwork exclusively as an exhibit artwork by chosing to upload to `exhibit artwork` by going to my artworks you can then add it to exhibits, such artworks will only be available in the exhibit. After the exhibit you can choose to add it to the general artwork<br>
 ![Uploading to exhibit](screenshots/ty.jpg)<br>
 
 7. Discover Artists:<br>
