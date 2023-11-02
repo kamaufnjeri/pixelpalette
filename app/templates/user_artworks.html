@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}
+Artworks page
+{% endblock %}
+{% block content %}
+<div class="body-container">
+    <h2>Discover, Collect, Create: Art in the Digital Realm</h2>
+    <h4>Artworks by {{ username }}</h4>
+            <div class="artist-artworks" id="artist-artworks" data-username="{{ username }}">
+    </div>  
+</div>
+{% endblock %}

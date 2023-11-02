@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+Exhibits
+{% endblock %}
+{% block content %}
+<div class="exhibit-container">
+    <div class="exhibits-info">
+        {% if exhibit and time_frame %}
+        <div class="artwork-wrapper" id="artwork-wrapper">
+            <i class="fa-solid fa-chevron-left fa-2x" id="prev-button"></i>
+            <i class="fa-solid fa-chevron-right fa-2x" id="next-button"></i>
+            <div class="slides">
+            {% for exhibit_artwork in exhibit.exhibit_artworks %}
+            <div class="slide">
+                <div class="slides-info">
+                    <h4><span>Name: </span>{{ exhibit_artwork.artwork.title }}</h4>
+                    <h5><span>Price: </span>Kshs. {{ exhibit_artwork.artwork.price }}</h5>
+                </div>
+                <img src="{{ exhibit_artwork.artwork.artwork_url }}" >
+            </div>
+            {% endfor %}
+            </div>
+            <div class="artwork-indicators" id="artwork-indicators">
+                {% for _ in exhibit.exhibit_artworks %}
+                <span class="indicator"></span>
+                {% endfor %}
+            </div>
+        </div>
+        <h4><span>Exhibit Name: </span>{{ exhibit.name }}</h4>
+        <h5><span>Description: </span>{{ exhibit.description }}</h5>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

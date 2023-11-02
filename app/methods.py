@@ -5,12 +5,14 @@ from dotenv import load_dotenv
 import PIL
 from PIL import Image
 import io
-import uuid  # Import the uuid module for generating unique filenames
+import uuid
+import logging
 
 load_dotenv()
 
 
 class Methods:
+    """Save an image to cloudinary after compressing its size in bytes"""
     def image_upload(self, image):
         cloudinary.config(
             cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
@@ -18,38 +20,48 @@ class Methods:
             api_secret=os.getenv("CLOUDINARY_API_SECRET"),
             secure=True
         )
-        
+
         img = Image.open(image)
 
-        # Convert the image to RGB mode if it's in RGBA mode
         if img.mode == 'RGBA':
             img = img.convert('RGB')
 
-        # Set the maximum target file size in bytes (5MB)
         max_size_bytes = 5 * 1024 * 1024
 
-        # Create a byte stream to hold the compressed image
         img_byte_array = io.BytesIO()
         img.save(img_byte_array, format='JPEG')
-
-        # Rewind the byte stream to the beginning
         img_byte_array.seek(0)
 
-        # Check if the compressed image is below the target size
-        if img_byte_array.tell() <= max_size_bytes:
-            # Upload the compressed image to Cloudinary
-            try:
-                upload_result = uploader.upload(img_byte_array, folder='my_pics', public_id=str(uuid.uuid4()),  # Use a unique filename
+        try:
+            if img_byte_array.tell() <= max_size_bytes:
+                upload_result = uploader.upload(
+                    img_byte_array,
+                    folder='my_pics',
+                    public_id=str(uuid.uuid4()),
                     transformation=[
                         {"width": 400, "height": 600, "crop": "fill"}
                     ]
                 )
                 return upload_result['secure_url']
-            except Exception as cloudinary_error:
-                print(f"Cloudinary upload failed: {str(cloudinary_error)}")
+            else:
+                unique_filename = str(uuid.uuid4()) + '.jpg'
+                local_path = f"uploads/my_pics/{unique_filename}"
+                img.save(local_path, format='JPEG')
+                return local_path
+        except Exception as e:
+            # Log the error
+            logging.error(f"Image upload failed: {str(e)}")
+            return "Image upload failed. Please try again."
 
-        # If Cloudinary upload fails or the image size exceeds the limit, save to local storage with a unique filename
-        unique_filename = str(uuid.uuid4()) + '.jpg'  # Unique filename
-        local_path = f"uploads/my_pics/{unique_filename}"
-        img.save(local_path, format='JPEG')
-        return local_path  # Return the local path as the image URL
+    """"Get the total value of items on favorite carts"""
+    def total_price(self, purchase_items, changed_item=None, purchase_item=None):
+        if purchase_items:
+            total_price = 0
+            for item in purchase_items:
+                if changed_item == item or (purchase_item and item == purchase_item):
+                    continue
+                total_price += float(item.artwork.price) * int(item.quantity)
+            return total_price
+        return 0
+
+

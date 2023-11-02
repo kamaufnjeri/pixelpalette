@@ -1,0 +1,49 @@
+<!-- cart.html template -->
+{% extends 'base.html' %}
+{% block title %}
+My Shopping Cart
+{% endblock %}
+{% block content %}
+<div class="body-container">
+	<h1>My favorite artworks cart</h1>
+	{% if cart %}
+	<div class="cart-items-container">
+		{% for cart_item in cart.purchase_items %}
+        <div class="cart-item">
+			<div class="cart-item-image">
+                <img src="{{ cart_item.artwork.artwork_url }}" alt="Artwork">
+            </div>
+
+            <div class="cart-item-info">
+				<h4>Name: {{ cart_item.artwork.title }}</h4>
+				<h5>Owner: {{ cart_item.artwork.owner.username }}</h5>
+				<h6>Description: {{ cart_item.artwork.description }}</h6>
+				<p>Category: {{ cart_item.artwork.category }}</p>
+            </div>
+            <div class="cart-item-price">
+                <h4>Price: Kshs. {{ cart_item.artwork.price }}</h4>
+				<form action="{{ url_for('update_cart_quantity', id=cart_item.id) }}" method="POST">
+					<p>Quantity: </p>
+				    <input type="number" class="quantity" name="quantity" value="{{ cart_item.quantity }}" min=1 max=100>
+				    <input type="submit" class="checkout-button info" value="Change quantity">
+			    </form>
+				<form action="{{ url_for('remove_item_from_cart', id=cart_item.id) }}" method="POST">
+					<input type="submit" class="checkout-button danger" value="Remove from cart">
+				</form>
+            </div>
+        </div>
+    {% endfor %}
+	<div class="cart-total">
+		<h4>Total: Kshs. {{ cart.total_amount }}</h4>
+	</div>
+
+	{% endif %}
+
+
+
+	</div>
+
+
+</div>
+
+{% endblock %}

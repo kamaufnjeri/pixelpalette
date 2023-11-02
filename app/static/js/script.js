@@ -1,22 +1,20 @@
-const headerNav = document.querySelector('.container-head');
-const barIcon = document.getElementById('menu-bar');
+document.addEventListener("DOMContentLoaded", function () {
+    const headerNav = document.querySelector('.container-head');
+    const barIcon = document.getElementById('menu-bar');
+    const navBarIcon = document.getElementById('nav-bar');
+    
+    
+    // deals with revealing the menu bar items
+    if (barIcon) {
+        barIcon.addEventListener('click', () => {
+            headerNav.classList.add('container-visible');
+         });
 
-barIcon.addEventListener('click', () => {
-   headerNav.classList.toggle('container-visible');
-   barIcon.classList.toggle('move-bar-icon');
+    }
+    // deals with hiding the menu bar item
+    if (navBarIcon) {
+        navBarIcon.addEventListener('click', () => {
+            headerNav.classList.remove('container-visible');
+         });
+    }
 });
-
-async function users() {
-   try {
-       const resp = await fetch('/api/users');
-       if (!resp.ok) {
-           throw new Error(`Network response was not ok: ${resp.status}`);
-       }
-       let data = await resp.json();
-       console.log(data);
-   } catch (error) {
-       console.error("Error:", error);
-   }
-}
-
-users();

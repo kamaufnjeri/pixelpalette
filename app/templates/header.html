@@ -1,28 +1,29 @@
+{% if current_user.is_authenticated %}
 <div class="container-head">
     <nav class="header-nav">
-        <a href="{{ url_for('home') }}">Home</a>
-        <a href="#">View Artworks</a>
-        <a href="#">View Artists</a>
-        <a href="#">View Exhibits</a>
-        <a href="#">Buy Artwork</a>
-        {% if current_user.is_authenticated %}
+        <div class="nav-head">
+            <i class="fa-solid fa-bars" class="nav-bar" id="nav-bar"></i>
+            <a href="{{ url_for('view_artworks') }}" class="nav-title">PixelPallete</a>
+        </div>
             {% if current_user.category == 'artist' %}
                 <a href="{{ url_for('upload_artwork', username=current_user.username) }}">
-                    Add Artwok
+                    Add An Artwork
                 </a>
-                <a href="#">My Artworks</a>
-                <a href="#">Add Exhibition</a>
+                <a href="{{ url_for('add_exhibit', username=current_user.username) }}">
+                    Create An Exhibit
+                </a>
+                <a href="{{ url_for('user_dashboard', username=current_user.username) }}">
+                    My Artworks
+                </a>
+            {% else %}
+                <a href="{{ url_for('user_dashboard', username=current_user.username) }}">
+                    My Account
+                </a>
             {% endif %}
             <a href="{{ url_for('user_profile', username=current_user.username) }}">My Profile</a>
             <a id="delete-user">
                 Delete Account
             </a>
-            <a href="{{ url_for('user_logout') }}">Logout</a>
-        {% else %}
-            <a href="{{ url_for('create_user') }}">Create Account</a>
-            <a href="{{ url_for('user_login') }}">User Login</a>
-        {% endif %}
-        <a href="#">About</a>
-        <a href="#">Contact</a>
     </nav>
 </div>
+{% endif %}
