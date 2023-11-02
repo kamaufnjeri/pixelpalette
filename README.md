@@ -25,7 +25,7 @@ Engage with artists by leaving comments or expressing interest in purchasing the
 As an artist you will be able to upload your media along with a description and price tag to the platform. Just click on the hamburger button on the top left of your screen and choose to `Add An Artwork`<br>
 ![Uploading media](screenshots/upl.jpg)
 
-5. Purchasing Art:<br>
+5. Adding to favorites:<br>
 If you find an art piece you love, view the art and add it to your favorites cart(highlighted).<br>
 ![Purchasing items](screenshots/cart.jpg)<br>
 Your items will appear in your cart.<br>
