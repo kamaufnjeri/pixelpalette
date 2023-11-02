@@ -32,7 +32,7 @@ class Artwork(db.Model):
     title = db.Column(db.String(255), unique=True, index=True, nullable=False)
     description = db.Column(db.String(1024), index=True, nullable=False)
     price = db.Column(db.Integer(), index=True, nullable=False)
-    category = db.Column(db.String(), index=True, nullable=False)
+    category = db.Column(db.String(255), index=True, nullable=False)
     type = db.Column(db.String(), index=True, nullable=False)
     artwork_url = db.Column(db.String(), unique=True, index=True, nullable=False)
     owner_id = db.Column(db.Integer(), db.ForeignKey('user.id'))
