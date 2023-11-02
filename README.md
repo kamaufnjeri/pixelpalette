@@ -15,11 +15,11 @@ If you are signing up, you have the option to choose to either sign up as an art
 
 2. Explore Artworks:<br>
 Visit the website and start exploring the diverse range of art showcased by talented artists.<br>
-![Explore the page](screenshots.art.jpg)<br>
+![Explore the page](screenshots/art.jpg)<br>
 
 3. Artist Interaction:<br>
 Engage with artists by leaving comments or expressing interest in purchasing their artworks. You can filter by categories provided and click on them to view individual arts.<br>
-![Interacting with arts](screenshots.search.jpg)<br>
+![Interacting with arts](screenshots/search.jpg)<br>
 
 4. Uploading art:<br>
 As an artist you will be able to upload your media along with a description and price tag to the platform. Just click on the hamburger button on the top left of your screen and choose to `Add An Artwork`<br>
@@ -27,24 +27,24 @@ As an artist you will be able to upload your media along with a description and 
 
 5. Purchasing Art:<br>
 If you find an art piece you love, view the art and add it to your favorites cart(highlighted).<br>
-![Purchasing items](screenshots/add.jpg)<br>
+![Purchasing items](screenshots/cart.jpg)<br>
 Your items will appear in your cart.<br>
-![Cart](screenshots/cart.jpg)<br>
+![Cart](screenshots/cart.png)<br>
 
 6. Add exhibitions:<br>
 As an artist, you might want to exhibit your work on the platform and you can do that by clicking on the hamburger button on the top left of your sccreen and selecting `Create An Exhibit`:<br>
 You then need name your exhibition and specify for how long you want the exhibit to run.<br>
 ![Creating an exhibit](screenshots/create.jpg)<br>
 After that you need to add you artwork to the exhibit by visiting your `My Artworks` page and adding to exhibit.<br>
-![Adding art to exhibit](screenshots/)<br>
+![Adding art to exhibit](screenshots/exhibit.jpg)<br>
 You should see it appear in the Exhibits section of your page.<br>
-![Exhibits][https://imgur.com/a/dIntlzm]<br>
+![Exhibits][screenshots/count.jpg]<br>
 Additionally you can add an exhibit while uploading your media by chosing to upload to `exhibit artwork`.<br>
-![Uploading to exhibit](https://imgur.com/a/2UZJcJt)<br>
+![Uploading to exhibit](screenshots/ty.jpg)<br>
 
 7. Discover Artists:<br>
 You can be able to see all artists by visiting the artists page where you can view all artworks of a specific artist.<br>
-![Artists page](https://imgur.com/a/BOaM5Et)<br>
+![Artists page](screenshots/artists.jpg)<br>
 
 ## Technologies used
 * HTML, CSS, JavaScript for frontend development.
