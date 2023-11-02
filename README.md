@@ -39,7 +39,7 @@ After that you need to add you artwork to the exhibit by visiting your `My Artwo
 ![Adding art to exhibit](screenshots/exhibit.jpg)<br>
 You should see it appear in the Exhibits section of your page.<br>
 ![Exhibits](screenshots/count.jpg)<br>
-Additionally you can choose to have an artwork exclusively as an exhibit artwork by chosing to upload to `exhibit artwork` by going to my artworks you can then add it to exhibits, such artworks will only be available in the exhibit. After the exhibit you can choose to add it to the general artwork<br>
+Additionally you can choose to have an artwork exclusively as an exhibit artwork by choosing `exhibit artwork` option and by going to my artworks you can then add it to exhibits, such artworks will only be available in the exhibit. After the exhibit you can choose to add it to the general artwork.<br>
 ![Uploading to exhibit](screenshots/ty.jpg)<br>
 
 7. Discover Artists:<br>
