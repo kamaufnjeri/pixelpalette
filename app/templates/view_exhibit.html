@@ -28,6 +28,8 @@ Exhibits
         </div>
         <h4><span>Exhibit Name: </span>{{ exhibit.name }}</h4>
         <h5><span>Description: </span>{{ exhibit.description }}</h5>
+        {% else %}
+        <h4><span style="font-size: 50px;">This exhibit is over</span></h4>
         {% endif %}
     </div>
 </div>
