@@ -7,22 +7,24 @@ from app.methods import Methods
 @app.route('/<string:username>/cart/<int:id>', methods=['GET', 'POST'])
 @login_required
 def cart(username, id):
-    # Check if the current user is authenticated
+    """Check if the current user is authenticated"""
     if current_user.is_authenticated:
         cart = ShoppingCart.query.filter_by(user_id=current_user.id).first()
         if cart:
 
             return render_template('cart.html', cart=cart)
         else:
-            # Handle the case where the user doesn't have a cart
+            """Incase the user doesn't have a cart"""
             flash("Cart not found", category="danger")
     else:
-        # Handle the case where the user is not authenticated
+        """Incase the user is not authenticated"""
         flash("Please log in to access the favorites cart", category="danger")
 
-    # Handle redirection or other actions for unauthenticated users
+    """redirection or other actions for unauthenticated users"""
     return redirect(url_for('user_login'))
 
+
+"""remove an item from cart and adjust total price"""
 @app.route('/remove_item_from_cart/<int:id>', methods=['GET', 'POST'])
 @login_required
 def remove_item_from_cart(id):
@@ -52,7 +54,7 @@ def remove_item_from_cart(id):
             return redirect(url_for("cart", username=current_user.username, id=shopping_cart.id))
 
 
-
+"""change quantity of item and also adjust total price"""
 @app.route('/update_cart_item_quantity/<int:id>', methods=['GET', 'POST'])
 @login_required
 def update_cart_quantity(id):

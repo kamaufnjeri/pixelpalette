@@ -6,6 +6,7 @@ from flask_login import current_user, login_required
 from datetime import datetime
 
 
+"""Home route with all the general artworks"""
 @app.route("/artworks")
 @app.route("/")
 @app.route("/home")
@@ -13,8 +14,10 @@ def view_artworks():
     return render_template("artworks.html")
 
 
+"""route for each individual artwork"""
 @app.route("/<string:username>/artworks/<int:id>", methods=['GET', 'POST'])
 def single_artwork(id, username):
+    """added the functionality of adding to favorites cat"""
     if request.method == 'POST':
         quantity = request.form['quantity']
         if quantity == '':
@@ -60,23 +63,26 @@ def single_artwork(id, username):
                 
             except Exception as e:
                 db.session.rollback()
-                flash(f'Error: {str(e)}', category="danger")
+                flash(f'Error: Try again!', category="danger")
         else:
             flash('Please ensure you are logged in', category="danger")
 
     return render_template("single_artwork.html")
 
 
+"""All artists page"""
 @app.route("/artists")
 def artists_page():
    return render_template("artists.html")
 
 
+"""all artist artworks page"""
 @app.route("/<string:username>/artworks")
 def artists_artworks(username):
     return render_template("user_artworks.html", username=username)
 
 
+"""search an artwork by title/name"""
 @app.route("/search", methods=["POST", "GET"])
 def search_function():
     if request.method == "POST":
@@ -96,7 +102,7 @@ def search_function():
 
     return render_template("search.html")
 
-# change an artwork from an exhibit artwork to a general artwork
+"""change an artwork from an exhibit artwork to a general artwork"""
 @app.route("/add_to_general_artworks/<int:id>", methods=["POST"])
 @login_required
 def add_to_general_artworks(id):
