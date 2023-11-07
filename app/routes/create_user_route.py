@@ -5,12 +5,14 @@ from flask import flash, render_template, redirect, url_for
 from flask_login import login_user
 
 
+"""creating an new account"""
 @app.route("/create_account", methods=["GET", "POST"])
 def create_user():
     form = RegistrationForm()
     if form.validate_on_submit():
         try:
             username = form.username.data
+            """check user name has no space"""
             if " " in username:
                 flash("Username needs to be a single word without spaces", category="danger")
             else:
@@ -39,12 +41,11 @@ def create_user():
                 flash(f"Success in creating account. You are logged in as {new_user.username}", category="success")
                 return redirect(url_for('user_dashboard', username=new_user.username))
         except Exception as e:
-            db.session.rollback()  # Roll back the transaction on error
-            flash(f"Error creating account: {str(e)}", category="danger")
+            db.session.rollback()
+            flash(f"Error creating account: Try again", category="danger")
 
     if form.errors:
         for error_msg in form.errors.values():
             flash(f"You have the following error: {error_msg}", category='danger')
 
     return render_template("create_user.html", form=form)
-

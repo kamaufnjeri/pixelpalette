@@ -5,20 +5,20 @@ from flask import flash, redirect, url_for, render_template
 from flask_login import login_required
 
 
+"""Change details eg title of an artwork"""
 @app.route("/<int:id>", methods=["GET", "POST"])
 @login_required
 def edit_artwork(id):
     form = EditForm()
-
     try:
         artwork = Artwork.query.filter_by(id=id).first()
     except Exception as e:
-        flash(f"Error: {str(e)}", category="danger")
+        flash(f"Error: Artwork not available", category="danger")
 
     if artwork:
         if form.validate_on_submit():
             try:
-                # Update the artwork with the new values
+                """ Update the artwork with the new values"""
                 
                 try:
                     price = float(form.price.data)
@@ -34,7 +34,7 @@ def edit_artwork(id):
                 db.session.rollback()
                 flash(f"Error updating artwork", category="danger")
 
-        # Prepopulate the form fields with the artwork data
+        """set default for form fields with the artwork data"""
         form.title.data = artwork.title
         form.description.data = artwork.description
         form.price.data = artwork.price
