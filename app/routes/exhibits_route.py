@@ -5,6 +5,7 @@ from app.models import Artwork, Exhibit_Artwork, Exhibits
 from datetime import datetime
 
 
+"""All exhibits with artworks"""
 @app.route("/exhibits")
 def exhibits():
     exhibits = Exhibits.query.all()
@@ -24,7 +25,6 @@ def view_exhibits(id):
     """"Within the ongoing period"""
     current_date = datetime.now()
     time_frame = exhibit.start_date <= current_date <= exhibit.end_date
-    print(time_frame)
     return render_template("view_exhibit.html", exhibit=exhibit, time_frame=time_frame)
 
 
@@ -43,7 +43,7 @@ def add_exhibit(username):
         existing_exhibit = current_user.exhibits
 
         if not existing_exhibit:
-            # User doesn't have an existing exhibition, so allow them to create a new one.
+            """" User doesn't have an existing exhibition, so allow them to create a new one."""
             try:
                 exhibit_date = datetime.strptime(start_datetime, '%Y-%m-%dT%H:%M')
                 end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
@@ -57,15 +57,15 @@ def add_exhibit(username):
 
             except Exception as e:
                 db.session.rollback()
-                flash(f"Error: {str(e)}", category="danger")
+                flash(f"Error creating exhibit: Try again!", category="danger")
                 return redirect(url_for('add_exhibit', username=username))
         else:
-            # User has an existing exhibition, check if it's before the end date.
+            """User has an existing exhibition, check if it's before the end date."""
             if existing_exhibit.end_date > current_date and existing_exhibit.exhibit_artworks != []:
                 flash("You already have an ongoing exhibition. You can create an exhibit after the current one ends.", category="danger")
                 return redirect(url_for('user_dashboard', username=username))
             else:
-                # The user can modify the existing exhibition.
+                """modify the existing exhibition."""
                 try:
                     exhibit_date = datetime.strptime(start_datetime, '%Y-%m-%dT%H:%M')
                     end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
@@ -84,13 +84,13 @@ def add_exhibit(username):
 
                 except Exception as e:
                     db.session.rollback()
-                    flash(f"Error: {str(e)}", category="danger")
+                    flash(f"Error creating exhibit: Try again!", category="danger")
                     return redirect(url_for('add_exhibit', username=username))
                 
     return render_template('add_exhibit.html')
 
 
-# adding an artwork to an exhibit
+"""adding an artwork to an exhibit"""
 @app.route("/add_artwork_to_exhibit/<int:id>", methods=["POST", "GET"])
 @login_required
 def add_artwork_to_exhibit(id):
@@ -134,7 +134,7 @@ def add_artwork_to_exhibit(id):
                 return redirect(url_for('user_dashboard', username=current_user.username))
 
 
-# removing an artwork from an exhibit
+"""removing an artwork from an exhibit"""
 @app.route("/remove_from_exhibit/<int:artwork_id>", methods=["POST", "GET"])
 @login_required
 def remove_from_exhibit(artwork_id):
@@ -165,13 +165,14 @@ def remove_from_exhibit(artwork_id):
             return redirect(url_for('user_dashboard', username=current_user.username))
 
 
+"""Deleting an exhibit"""
 @app.route('/delete_exhibit/<int:id>', methods=["GET", 'POST'])
 @login_required
 def delete_exhibit(id):
     exhibit = Exhibits.query.filter_by(id=id).first()
     if exhibit:
         current_date = datetime.now()
-        if current_date >= exhibit.start_date and current_date <= exhibit.end_date:
+        if current_date >= exhibit.start_date and current_date <= exhibit.end_date and exhibit.exhibit_artworks != []:
             flash("Exhibition is ongoing", category="danger")
             return redirect(url_for('user_dashboard', username=current_user.username))
 

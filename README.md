@@ -28,7 +28,7 @@ As an artist you will be able to upload your media along with a description and 
 5. Adding to favorites:<br>
 If you find an art piece you love, view the art and add it to your favorites cart(highlighted).<br>
 ![Purchasing items](screenshots/cart.jpg)<br>
-Your items will appear in your cart.<br>
+Your items will appear in your cart.To purchase an artwork one needs to contact the owner<br>
 ![Cart](screenshots/cart.png)<br>
 
 6. Add exhibitions:<br>

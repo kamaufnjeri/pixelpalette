@@ -125,11 +125,14 @@ nav a:hover {
 .search {
     border-radius: 20px;
     border: 2px solid #C53678;
-    width: 400px;
+    max-width: 400px;
     transform: translateX(0%);
     padding: 5px 10px;
     position: relative;
     margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .search input {
     border: none;
@@ -137,10 +140,9 @@ nav a:hover {
     font-weight: 500;
     color: #000000;
     font-size: 18px;
+    max-width: 350px;
 }
 .search button {
-    right: 5px;
-    position: absolute;
     outline: none;
     border: none;
     background: transparent;
