@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/popup.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/artworks.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='styles/exhibits.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
         <title>
             {% block title %}
             {% endblock %}
@@ -38,7 +39,7 @@
             <a class="menu-items" href="{{ url_for('user_login') }}">Login</a>
 			{% endif %}
             <a class="menu-items" href="#">About</a>
-            <a class="menu-items" href="#">Contact</a>
+            <a class="menu-items" href="#contact-us">Contact</a>
             
             {% include "header.html" %}
             {% include "popupdelete.html" %}
@@ -62,6 +63,62 @@
 
             {% endblock %}
         </main>
+        <footer class="contact-us" id="contact-us">
+            <div class="developers">
+                <h2>Developers</h2>
+                <div class="all-developers">
+                    <div class="developer-cont">
+                        <h2>Abraham Bett</h2>
+                        <div class="contact">
+                            <a href="https://www.linkedin.com/in/abraham-bett-006245199/" target="_blank">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/nunother7" target="_blank">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://github.com/abraham-ship" target="_blank">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                           
+                        </div>
+                    </div>
+                    <div class="developer-cont">
+                        <h2>Florence Kamau</h2>
+                        <div class="contact">
+                            <a href="https://www.linkedin.com/in/florence-kamau-696874241/" target="_blank">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/kamaufnjeri" target="_blank">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://github.com/kamaufnjeri" target="_blank">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                           
+                        </div>
+                    </div>
+                    <div class="developer-cont">
+                        <h2>Uel Kariuki</h2>
+                        <div class="contact">
+                            <a href="https://www.linkedin.com/in/uel-kariuki/" target="_blank">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                            <a href="https://twitter.com/UelKariuki" target="_blank">
+                                <i class="fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://github.com/uelkariuki" target="_blank">
+                                <i class="fa-brands fa-github"></i>
+                            </a>
+                           
+                        </div>
+                    </div>
+                    <a href="https://github.com/kamaufnjeri/pixelpallete.git" target="_blank" class="btn" id="git-btn">
+                        <i class="fa-brands fa-github"></i>
+                        Source Code
+                    </a>
+                </div>
+            </div>
+        </footer>
         <script src="{{ url_for('static', filename='js/script.js' ) }}"></script>
         <script src="{{ url_for('static', filename='js/notifications.js' ) }}"></script>
         <script src="{{ url_for('static', filename='js/artworks.js' ) }}"></script>
