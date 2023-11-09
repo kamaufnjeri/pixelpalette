@@ -44,14 +44,20 @@ class Methods:
                 )
                 return upload_result['secure_url']
             else:
-                unique_filename = str(uuid.uuid4()) + '.jpg'
-                local_path = f"uploads/my_pics/{unique_filename}"
-                img.save(local_path, format='JPEG')
-                return local_path
+                raise Exception("Image size exceeds the maximun allowed")
+               
         except Exception as e:
             # Log the error
             logging.error(f"Image upload failed: {str(e)}")
-            return "Image upload failed. Please try again."
+            local_directory = os.path.join(".", "app", "static", "uploads", "my_pics")
+            os.makedirs(local_directory, exist_ok=True)  # Create the directory if it doesn't exist
+        
+            unique_filename = str(uuid.uuid4()) + '.jpg'
+            local_path = os.path.join(local_directory, unique_filename).replace("\\", "/")
+            img.save(local_path, format='JPEG')
+            path_list = local_path.split("/")[2:]
+            artwork_url = "/" + "/".join(path_list)
+            return artwork_url
 
     """"Get the total value of items on favorite carts"""
     def total_price(self, purchase_items, changed_item=None, purchase_item=None):
