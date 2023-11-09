@@ -90,7 +90,7 @@ def search_function():
         if search_word:
             search_term = f"%{search_word}%"
             artworks_search = Artwork.query.filter(Artwork.title.ilike(search_term)).all()
-            if artworks_search:
+            if artworks_search and artworks_search.type == "general_artwork":
                 flash("Artworks matching the search word found", category="success")
                 return render_template("search.html", artworks_search=artworks_search)
             else:
@@ -112,7 +112,7 @@ def add_to_general_artworks(id):
         current_date = datetime.now()
         if artwork:
             if exhibit and current_date < exhibit.end_date:
-                flash("The current exhibit has not ended", category="danger")
+                flash("Can't add artwork to general artwork when exhibit is ongoing", category="danger")
                 return redirect(url_for('user_dashboard', username=current_user.username))
             artwork.type = "general_artwork"
             db.session.commit()

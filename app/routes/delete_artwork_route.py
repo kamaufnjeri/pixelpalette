@@ -21,6 +21,7 @@ def delete_artwork(id):
                 if exhibit and exhibit_art and exhibit.end_date > current_date:
                     """check if artwork is in an exhibit"""
                     flash("Cannot delete artwork. Its part of an exhibit.", category="danger")
+                    return redirect(url_for('user_dashboard', username=current_user.username))
                 else:
                     cart_items = PurchaseItem.query.filter_by(artwork_id=artwork.id).all()
                     exhibit_artworks = Exhibit_Artwork.query.filter_by(artwork_id=artwork.id).all()
@@ -31,11 +32,14 @@ def delete_artwork(id):
                         db.session.delete(exhibit_artwork)
                         
                     db.session.delete(artwork)
+                    db.session.commit()
                     flash("Artwork successfully deleted", category="success")
+                    return redirect(url_for('user_dashboard', username=current_user.username))
+                    
 
-                db.session.commit()
             except Exception as e:
                 db.session.rollback()
                 flash(f"Error deleting artwork. Please {str(e)}.", category="danger")
+                return redirect(url_for('user_dashboard', username=current_user.username))
             
             return redirect(url_for('user_dashboard', username=current_user.username))
