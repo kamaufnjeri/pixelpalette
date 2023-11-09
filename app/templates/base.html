@@ -46,7 +46,7 @@
         </header>
         <main>
             <form action="{{ url_for('search_function') }}" method="POST" class="search">
-                <input type="text" name="search-word" placeholder="Search artwork by name">
+                <input type="text" name="search-word" placeholder="Search artwork">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             {% with messages = get_flashed_messages(with_categories=True) %}

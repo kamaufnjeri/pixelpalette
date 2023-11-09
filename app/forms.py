@@ -54,7 +54,7 @@ class ArtworkForm(FlaskForm):
         label='Type of Artwork:',
         choices=[
             ('general_artwork', 'General Artwork'),
-            ('exhibit_artwork', 'Exhihibit Artwork')
+            ('exhibit_artwork', 'Exhibit Artwork')
         ],
             validators=[DataRequired()]
     )
