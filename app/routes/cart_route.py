@@ -19,6 +19,7 @@ def cart(username, id):
     else:
         """Incase the user is not authenticated"""
         flash("Please log in to access the favorites cart", category="danger")
+        return redirect(url_for('user_login'))
 
     """redirection or other actions for unauthenticated users"""
     return redirect(url_for('user_login'))

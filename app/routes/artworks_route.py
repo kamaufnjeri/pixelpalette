@@ -71,6 +71,8 @@ def single_artwork(id, username):
                 flash(f'Error: Try again!', category="danger")
         else:
             flash('Please ensure you are logged in', category="danger")
+            return redirect(url_for('user_login'))
+
 
     return render_template("single_artwork.html")
 

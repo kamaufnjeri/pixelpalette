@@ -1,8 +1,108 @@
+.about-all#about-all {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-flow: column;
+    margin: 40px 20px 20px 20px;
+}
+.about-all#about-all h1 {
+    font-weight: 800;
+    font-size: 36px;
+    color: #C53678;
+}
+.about-pixelpallete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+div.features#features {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-flow: row;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.about-pixelpallete h2, .about-us h2{
+    font-weight: 700;
+    font-size: 26px;
+    text-decoration: underline;
+    color: #C53678;
+}
+.feature-cont {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.feature-cont:nth-child(3) {
+    flex-flow: row-reverse;
+}
+.feature-cont h2 {
+    font-weight: 600;
+    color: #FF5841;
+    font-size: 22px;
+}
+.feature-details p {
+    font-size: 20px;
+    font-weight: 500;
+}
+.feature-details {
+    max-width: 600px;
+    margin: 20px;
+}
+.feature-details span {
+    font-weight: 700;
+}
+
+.about-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+}
+
+
+.about-us .inspiration h2, .mission h2, .developers h2 {
+    font-weight: 600;
+    color: #FF5841;
+    font-size: 22px;
+}
+
+.inspiration {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inspiration-info {
+    flex-flow: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 5px;
+    margin: 10px 0 20px 0;
+}
+.inspiration-cont, .mission {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    margin: 20px;
+    flex-basis: 50%;
+}
+.inspiration p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .contact-us {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin-top: 300px;
 }
 .contact-us h2 {
     font-size: 22px;
@@ -23,8 +123,11 @@
 }
 .all-developers {
     display: flex;
-    min-width: 90vw;
+    min-width: 96vw;
     justify-content: space-between;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
 }
 .developer-cont h2 {
     font-size: 22px;

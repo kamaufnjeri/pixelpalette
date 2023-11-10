@@ -72,6 +72,7 @@ class ProfileForm(FlaskForm):
     last_name = StringField(label='Last name:',  validators=[Length(min=4, max=20), DataRequired()])
     email_address = StringField(label='Email address:', validators=[Email()])
     password1 = PasswordField(label='Password:')
+    category = SelectField(label='Category:', choices=[('artist', 'Artist'), ('art_enthusiast', 'Art Enthusiast')], validators=[DataRequired()])
     submit = SubmitField(label='Save Changes')
 
 class EditForm(FlaskForm):

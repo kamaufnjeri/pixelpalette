@@ -2,7 +2,7 @@ from app import app, bcrypt, db
 from flask import request, flash, render_template, redirect, url_for
 from app.forms import ProfileForm
 from app.models import User
-from flask_login import login_required
+from flask_login import login_required, current_user
 
 
 @app.route("/<string:username>/my_profile", methods=["GET", "POST"])
@@ -15,6 +15,7 @@ def user_profile(username):
             first_name = form.first_name.data
             last_name = form.last_name.data
             email_address = form.email_address.data
+            category = form.category.data
             user = User.query.filter_by(username=username).first()
             
             if user:
@@ -22,6 +23,7 @@ def user_profile(username):
                 user.first_name = first_name
                 user.last_name = last_name
                 user.email_address = email_address
+                user.category = category
                 
                 if form.password1.data:
                     password_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
@@ -37,5 +39,6 @@ def user_profile(username):
     if form.errors:
         for error_msg in form.errors.values():
             flash(f"You have the following error: {error_msg}", category='danger')
+    form.category.data = current_user.category
     
     return render_template("user_profile.html", form=form)

@@ -38,7 +38,7 @@
             <a class="menu-items" href="{{ url_for('create_user') }}">Sign Up</a>
             <a class="menu-items" href="{{ url_for('user_login') }}">Login</a>
 			{% endif %}
-            <a class="menu-items" href="#">About</a>
+            <a class="menu-items" href="#about-all">About</a>
             <a class="menu-items" href="#contact-us">Contact</a>
             
             {% include "header.html" %}
@@ -63,61 +63,126 @@
 
             {% endblock %}
         </main>
-        <footer class="contact-us" id="contact-us">
-            <div class="developers">
-                <h2>Developers</h2>
-                <div class="all-developers">
-                    <div class="developer-cont">
-                        <h2>Abraham Bett</h2>
-                        <div class="contact">
-                            <a href="https://www.linkedin.com/in/abraham-bett-006245199/" target="_blank">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                            <a href="https://twitter.com/nunother7" target="_blank">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="https://github.com/abraham-ship" target="_blank">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                           
+        <footer class="about-all" id="about-all">
+            <h1>About PixelPallete</h1>
+            <div class="about-pixelpallete">
+                <h2>Key Features</h2>
+                <div class="features" id="features">
+                    <div class="feature-cont">
+                        <div class="feature-details">
+                            <h2>Upload Artworks:</h2>
+                            <p>
+                                <span>Description:</span>
+                                Showcase your own artworks and share them with the art community.
+                                You can upload your creations for others to view and appreciate.
+                            </p>
                         </div>
                     </div>
-                    <div class="developer-cont">
-                        <h2>Florence Kamau</h2>
-                        <div class="contact">
-                            <a href="https://www.linkedin.com/in/florence-kamau-696874241/" target="_blank">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                            <a href="https://twitter.com/kamaufnjeri" target="_blank">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="https://github.com/kamaufnjeri" target="_blank">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                           
+                    <div class="feature-cont">
+                        <div class="feature-details">
+                            <h2>Create an Exhibition:</h2>
+                            <p>
+                                <span>Description:</span>
+                                Curate and exhibit the finest artworks within your dedicated art space.
+                                Showcase the best pieces to an eager audience.
+                            </p>
                         </div>
                     </div>
-                    <div class="developer-cont">
-                        <h2>Uel Kariuki</h2>
-                        <div class="contact">
-                            <a href="https://www.linkedin.com/in/uel-kariuki/" target="_blank">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                            <a href="https://twitter.com/UelKariuki" target="_blank">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-                            <a href="https://github.com/uelkariuki" target="_blank">
-                                <i class="fa-brands fa-github"></i>
-                            </a>
-                           
+                    <div class="feature-cont">
+                        <div class="feature-details">
+                            <h2>Favorite Cart:</h2>
+                            <p>
+                                <span>Description:</span>
+                                Create a personalized collection of your most-liked artworks,
+                                making it easy to revisit and explore your favorites.
+                            </p>
                         </div>
                     </div>
-                    <a href="https://github.com/kamaufnjeri/pixelpallete.git" target="_blank" class="btn" id="git-btn">
-                        <i class="fa-brands fa-github"></i>
-                        Source Code
-                    </a>
+                </div>
+                <div class="about-us" id="about-us">
+                    <div class="inspiration">
+                        <div class="inspiration-info">
+                            <div class="inspiration-cont">
+                                <h2>Inspiration</h2>
+                                <p>
+                                    In our country, artists have been facing an issue where they can't monetize their work,
+                                    which has led them to earn almost nothing for their hard work. Consequently, many artists
+                                    give up on their skills, resulting in wasted potential and missed opportunities for
+                                    improving their quality of life. Recognizing this issue, we were inspired to create a web
+                                    application that unites artists and art enthusiasts. Our goal was to provide a platform
+                                    where artists could showcase their artworks, and art enthusiasts could view and purchase
+                                    pieces that interested them. This not only benefits the artists by providing remuneration
+                                    for their work but also offers them exposure to a wider audience.
+                                </p>
+                            </div>
+                            <div class="mission">
+                                <h2>Our Mission</h2>
+                                <p>
+                                    Our web application primarily focuses on serving the needs of Kenyan artists, with the
+                                    objective of future growth to serve regional, continental, and global markets in the
+                                    near future.
+                                </p>
+                            </div>
+                        </div>   
+                    </div>
                 </div>
             </div>
+            <div class="contact-us" id="contact-us">
+                <div class="developers">
+                    <h2>Developers</h2>
+                    <div class="all-developers">
+                        <div class="developer-cont">
+                            <h2>Abraham Bett</h2>
+                            <div class="contact">
+                                <a href="https://www.linkedin.com/in/abraham-bett-006245199/" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                                <a href="https://twitter.com/nunother7" target="_blank">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </a>
+                                <a href="https://github.com/abraham-ship" target="_blank">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            
+                            </div>
+                        </div>
+                        <div class="developer-cont">
+                            <h2>Florence Kamau</h2>
+                            <div class="contact">
+                                <a href="https://www.linkedin.com/in/florence-kamau-696874241/" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                                <a href="https://twitter.com/kamaufnjeri" target="_blank">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </a>
+                                <a href="https://github.com/kamaufnjeri" target="_blank">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            
+                            </div>
+                        </div>
+                        <div class="developer-cont">
+                            <h2>Uel Kariuki</h2>
+                            <div class="contact">
+                                <a href="https://www.linkedin.com/in/uel-kariuki/" target="_blank">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                </a>
+                                <a href="https://twitter.com/UelKariuki" target="_blank">
+                                    <i class="fa-brands fa-x-twitter"></i>
+                                </a>
+                                <a href="https://github.com/uelkariuki" target="_blank">
+                                    <i class="fa-brands fa-github"></i>
+                                </a>
+                            
+                            </div>
+                        </div>
+                        <a href="https://github.com/kamaufnjeri/pixelpallete.git" target="_blank" class="btn" id="git-btn">
+                            <i class="fa-brands fa-github"></i>
+                            Source Code
+                        </a>
+                    </div>
+                </div>
+           </div>
         </footer>
         <script src="{{ url_for('static', filename='js/script.js' ) }}"></script>
         <script src="{{ url_for('static', filename='js/notifications.js' ) }}"></script>
