@@ -5,13 +5,17 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import SubmitField
 from app.models import User
 
+
+"""form for user registration"""
 class RegistrationForm(FlaskForm):
     def validate_username(self, username_to_check):
+        """check if username exists and raise error"""
         user = User.query.filter_by(username=username_to_check.data).first()
         if user:
             raise ValidationError('Username already exists! Please try a different username')
 
     def validate_email_address(self, email_address_to_check):
+        """check if username exists and raise an error"""
         email_address = User.query.filter_by(email_address=email_address_to_check.data).first()
         if email_address:
             raise ValidationError('Email address already exists! Please try a different email adress')
@@ -30,12 +34,14 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField(label='Create account')
 
 
+"""form to login"""
 class LoginForm(FlaskForm):
     username = StringField(label='User name:', validators=[DataRequired()])
     password = PasswordField(label='Password:', validators=[DataRequired()])
     submit = SubmitField(label='Login')
 
 
+"""artwork upload form"""
 class ArtworkForm(FlaskForm):
     title = StringField(label='Title:', validators=[DataRequired()])
     description = TextAreaField(label='Description:', validators=[DataRequired()])
@@ -66,6 +72,7 @@ class ArtworkForm(FlaskForm):
     submit = SubmitField(label='Upload')
 
 
+"""updating use info form"""
 class ProfileForm(FlaskForm):
     username = StringField(label='User name:', validators=[Length(min=4, max=30), DataRequired()])
     first_name = StringField(label='First name:', validators=[Length(min=4, max=20), DataRequired()])
@@ -75,6 +82,8 @@ class ProfileForm(FlaskForm):
     category = SelectField(label='Category:', choices=[('artist', 'Artist'), ('art_enthusiast', 'Art Enthusiast')], validators=[DataRequired()])
     submit = SubmitField(label='Save Changes')
 
+
+"""updating artwork info form"""
 class EditForm(FlaskForm):
     title = StringField(label='Title:', validators=[DataRequired()])
     description = TextAreaField(label='Description:', validators=[DataRequired()])

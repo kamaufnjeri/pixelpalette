@@ -1,8 +1,9 @@
 from app import app, bcrypt, db
 from flask import request, flash, render_template, redirect, url_for
-from app.forms import ProfileForm
+from app.forms import ProfileForm, EmailForm, PasswordForm
 from app.models import User
 from flask_login import login_required, current_user
+
 
 
 @app.route("/<string:username>/my_profile", methods=["GET", "POST"])

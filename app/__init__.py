@@ -7,8 +7,10 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS
 
 
+"""create an instance of flask"""
 app = Flask(__name__)
 
+"""configuration to the app"""
 app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
