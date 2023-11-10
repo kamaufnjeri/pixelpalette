@@ -47,15 +47,16 @@ class Methods:
                 raise Exception("Image size exceeds the maximun allowed")
                
         except Exception as e:
-            # Log the error
+            """Logging the error"""
             logging.error(f"Image upload failed: {str(e)}")
+            """Path to save file in local machine"""
             local_directory = os.path.join(".", "app", "static", "uploads", "my_pics")
-            os.makedirs(local_directory, exist_ok=True)  # Create the directory if it doesn't exist
-        
+            os.makedirs(local_directory, exist_ok=True)  
             unique_filename = str(uuid.uuid4()) + '.jpg'
             local_path = os.path.join(local_directory, unique_filename).replace("\\", "/")
             img.save(local_path, format='JPEG')
             path_list = local_path.split("/")[2:]
+            """url to save in the database"""
             artwork_url = "/" + "/".join(path_list)
             return artwork_url
 
