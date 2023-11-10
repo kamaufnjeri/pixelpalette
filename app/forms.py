@@ -78,4 +78,22 @@ class EditForm(FlaskForm):
     title = StringField(label='Title:', validators=[DataRequired()])
     description = TextAreaField(label='Description:', validators=[DataRequired()])
     price = StringField(label='Price:', validators=[DataRequired()])
+    category = SelectField(
+        label='Category:',
+        choices=[
+            ('painting', 'Painting'),
+            ('sculpture', 'Sculpture'),
+            ('photography', 'Photography'),
+            ('others', 'Others')
+        ],
+            validators=[DataRequired()]
+    )
+    type = SelectField(
+        label='Type:',
+        choices=[
+            ('general_artwork', 'General Artwork'),
+            ('exhibit_artwork', 'Exhibit Artwork'),
+        ],
+            validators=[DataRequired()]
+    )
     submit = SubmitField(label='Save Changes')

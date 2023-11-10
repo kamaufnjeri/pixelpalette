@@ -125,7 +125,7 @@ def add_artwork_to_exhibit(id):
                         return redirect(url_for('add_exhibit', username=current_user.username))
                     
                 else:
-                    flash("You need to create a new exhibit", category="danger")
+                    flash("You need to create an exhibit", category="danger")
                     return redirect(url_for('add_exhibit', username=current_user.username))
 
             except Exception as e:
@@ -186,3 +186,43 @@ def delete_exhibit(id):
     else:
         flash("No exhibit", category="danger")
         return redirect(url_for('user_dashboard', username=current_user.username))
+    
+
+"""Edit an exhibit"""
+@app.route("/<string:username>/edit_exhibit/<int:exhibit_id>", methods=["POST", "GET"])
+def edit_exhibit(username, exhibit_id):
+    exhibit = Exhibits.query.filter_by(id=exhibit_id).first()
+    current_date = datetime.now()
+    if exhibit:
+        if request.method == "POST":
+            name = request.form.get('name')
+            description = request.form.get('description')
+            start_datetime = request.form.get('start_datetime')
+            end_date = request.form.get('end_datetime')
+
+            """check if the exhibit has started"""
+            if  current_date >= exhibit.start_date and current_date <= exhibit.end_date:
+                flash("Exhibit is ongoing", category="danger")
+                return redirect(url_for('user_dashboard', username=username))
+            else:
+                """modify the existing exhibition."""
+                try:
+                    exhibit_date = datetime.strptime(start_datetime, '%Y-%m-%dT%H:%M')
+                    end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M')
+
+                    exhibit.name = name
+                    exhibit.description = description
+                    exhibit.start_date = exhibit_date
+                    exhibit.end_date = end_date
+                    
+                    db.session.commit()
+
+                    flash("Successfully updated exhibit", category="success")
+                    return redirect(url_for('user_dashboard', username=current_user.username))
+
+                except Exception as e:
+                    db.session.rollback()
+                    flash(f"Error updating exhibit: Try again!", category="danger")
+                    return redirect(url_for('add_exhibit', username=username))
+
+    return render_template("edit_exhibit.html", exhibit=exhibit)

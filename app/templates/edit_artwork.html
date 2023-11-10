@@ -25,6 +25,14 @@ Edit Artwork
                     {{ form.price.label(class="label") }}
                     {{ form.price(value=artwork.price, class="input") }}
                 </div>
+                <div class="input-field">
+                    {{ form.category.label(class="label") }}
+                    {{ form.category(class="input", value=artwork.category ) }}
+                </div>
+                <div class="input-field">
+                    {{ form.type.label(class="label") }}
+                    {{ form.type(class="input", value=artwork.type ) }}
+                </div>
                 <div class="button-field">
                     {{ form.submit(class="btn-log") }}
                 </div>
