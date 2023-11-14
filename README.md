@@ -172,3 +172,6 @@ Thank you for contributing to PixelPallete!
 2. **Web umenia**
    - GitHub: [Web umenia](https://github.com/SlovakNationalGallery/webumenia.sk)
    - Description: Web umenia is an open platform to explore digitized art collections from public galleries and museums.
+  
+## License
+Source code in this repository is licensed under the MIT license. Please see the [License File](LICENSE) for more information.
