@@ -1,7 +1,7 @@
 # Pixelpallete.
 Pixelpallete is designed to connect artists with art enthusiasts. It serves as a marketplace for artists to showcase their masterpieces while providing a seamless experience for art lovers to explore, interact, and purchase their favorite art pieces.
 
-[Visit our website](kamaufnjeri.github.io)
+[Visit our website](https://kamaufnjeri.github.io)
 
 ## Installation
 * In your temirnal eg. Ubuntu terminal run the following command `git clone https://github.com/kamaufnjeri/pixelpallete.git`
