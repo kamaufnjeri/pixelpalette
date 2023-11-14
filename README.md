@@ -1,6 +1,17 @@
 # Pixelpallete.
 Pixelpallete is designed to connect artists with art enthusiasts. It serves as a marketplace for artists to showcase their masterpieces while providing a seamless experience for art lovers to explore, interact, and purchase their favorite art pieces.
 
+[Visit our website](kamaufnjeri.github.io)
+
+## Installation
+* In your temirnal eg. Ubuntu terminal run the following command `git clone https://github.com/kamaufnjeri/pixelpallete.git`
+* Go into the projects directory by running the command `cd pixelpallete`
+* Create a virtual enviromnent by the command `virtualenv name-of-your-virtual-enviroment`. To install virtual environment use `sudo apt install virtualenv`
+* To activate the virtual environment. For linux run the command `source name-of-your-virtual-environment/bin/activate` and windows `source name-of-your-virtual-environment/Scripts/activate`
+* Then run the command `pip install -r requirements.txt` to install the libraries and modules needed by pixelpallete
+* Run the command `python app.py` or `python3 app.py` to run pixelpallete
+* To access pixelpallete open the url `http://127.0.0.0.1:5000`](https://github.com/kamaufnjeri/pixelpallete.git)
+
 ## Features
 * Artist Showcases: Artists can create profiles and exhibit their best artworks, providing a portfolio for potential buyers.
 * Artwork Categorization and Search: Enables easy browsing and discovery through categorization and search functionalities.
