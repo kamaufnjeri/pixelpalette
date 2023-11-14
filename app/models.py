@@ -7,6 +7,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+"""datamodel for user class"""
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(64), nullable=False, index=True, unique=True)
@@ -22,11 +23,14 @@ class User(db.Model, UserMixin):
     exhibit_artworks = db.relationship('Exhibit_Artwork', backref='owner', lazy=True)
 
     def check_password_correct(self, attempted_password):
+        """check user password input during login is similar to that in database"""
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
     def __repr__(self):
         return f'User {self.username}'
 
+
+"""datamodel for class Artwork"""
 class Artwork(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     title = db.Column(db.String(255), unique=True, index=True, nullable=False)
@@ -39,10 +43,11 @@ class Artwork(db.Model):
     # exhibits = db.relationship('Exhibit_Artwork', back_populates='artwork')
 
     def __repr__(self):
-        # Change printing of objects of class User to help in debugging
+        # Change printing of objects of class Artwork to help in debugging
         return f'Artwork {self.title}'
 
 
+"""cart class datamodel"""
 class ShoppingCart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
@@ -50,6 +55,8 @@ class ShoppingCart(db.Model):
     purchase_date = db.Column(db.TIMESTAMP, server_default=db.func.now())
     purchase_items = db.relationship('PurchaseItem', backref="shopping_cart", lazy=True)
 
+
+"""artwork to purchase class"""
 class PurchaseItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     quantity = db.Column(db.Integer, default=1)
@@ -62,10 +69,11 @@ class PurchaseItem(db.Model):
     artwork = db.relationship('Artwork', backref="artwork", lazy=True)
 
     def __repr__(self):
-        # Change printing of objects of class User to help in debugging
+        # Change printing of objects of class PuchaseItem to help in debugging
         return f'PurchaseItem {self.id}'
 
 
+"""exhibit class"""
 class Exhibits(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(255), nullable=False, index=True)
@@ -76,19 +84,19 @@ class Exhibits(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        # Change printing of objects of class User to help in debugging
+        # Change printing of objects of class Exhibit to help in debugging
         return f'Exhibit {self.name}'
 
 
+"""artworks in an exhibit class"""
 class Exhibit_Artwork(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     artwork_id = db.Column(db.Integer, db.ForeignKey('artwork.id'), nullable=False)
     exhibit_id = db.Column(db.Integer, db.ForeignKey('exhibits.id'), nullable=False)
-
     artwork = db.relationship("Artwork", backref="exhibit_art", lazy=True)
     # exhibit = db.relationship("Exhibits", backref="exhibit_artwork", lazy=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        # Change printing of objects of class User to help in debugging
+        # Change printing of objects of class Exhibit_Artwork to help in debugging
         return f'Exhibit_artwork {self.id}'

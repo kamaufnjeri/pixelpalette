@@ -26,9 +26,11 @@ def delete_artwork(id):
                     cart_items = PurchaseItem.query.filter_by(artwork_id=artwork.id).all()
                     exhibit_artworks = Exhibit_Artwork.query.filter_by(artwork_id=artwork.id).all()
                     for cart_item in cart_items:
+                        """Delete the artwork from uses cart"""
                         db.session.delete(cart_item)
                     
                     for exhibit_artwork in exhibit_artworks:
+                        """Delere from an exhibit an artwork"""
                         db.session.delete(exhibit_artwork)
                         
                     db.session.delete(artwork)
@@ -38,8 +40,9 @@ def delete_artwork(id):
                     
 
             except Exception as e:
+                """In case of error rollback from inserting to database"""
                 db.session.rollback()
-                flash(f"Error deleting artwork. Please {str(e)}.", category="danger")
+                flash(f"Error deleting artwork. Please try again!.", category="danger")
                 return redirect(url_for('user_dashboard', username=current_user.username))
             
             return redirect(url_for('user_dashboard', username=current_user.username))

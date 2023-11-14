@@ -19,9 +19,9 @@ def edit_artwork(id):
     if artwork:
         if form.validate_on_submit():
             try:
-                """ Update the artwork with the new values"""
-                
+                """ Update the artwork with the new values"""  
                 try:
+                    """check price is an integer or float"""
                     price = float(form.price.data)
                 except Exception:
                     flash("Price should be an number", category="danger")

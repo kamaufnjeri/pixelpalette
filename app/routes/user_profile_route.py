@@ -1,11 +1,11 @@
 from app import app, bcrypt, db
 from flask import request, flash, render_template, redirect, url_for
-from app.forms import ProfileForm, EmailForm, PasswordForm
+from app.forms import ProfileForm
 from app.models import User
 from flask_login import login_required, current_user
 
 
-
+"""edit user details"""
 @app.route("/<string:username>/my_profile", methods=["GET", "POST"])
 @login_required
 def user_profile(username):
@@ -20,6 +20,7 @@ def user_profile(username):
             user = User.query.filter_by(username=username).first()
             
             if user:
+                """check user exists and update their details"""
                 user.username = updated_username
                 user.first_name = first_name
                 user.last_name = last_name
@@ -27,6 +28,7 @@ def user_profile(username):
                 user.category = category
                 
                 if form.password1.data:
+                    """hash the new password to be set"""
                     password_hash = bcrypt.generate_password_hash(form.password1.data).decode('utf-8')
                     user.password_hash = password_hash
                 
@@ -39,6 +41,7 @@ def user_profile(username):
     
     if form.errors:
         for error_msg in form.errors.values():
+            """flash any errors user may make while they input info in a form"""
             flash(f"You have the following error: {error_msg}", category='danger')
     form.category.data = current_user.category
     

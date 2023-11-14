@@ -1,7 +1,14 @@
+/*
+Document event listener for DOMContentLoaded
+*/
 document.addEventListener("DOMContentLoaded", function () {
+  // Get elements from the DOM
   const artworkIndicators = document.getElementById('artwork-indicators');
   const exhibits = document.getElementById('exhibits');
 
+  /*
+  Function to calculate time difference between current date and target date
+  */
   function getTimeDifference(startDate) {
     const currentDate = new Date().getTime();
     const targetDate = new Date(startDate).getTime();
@@ -13,14 +20,18 @@ document.addEventListener("DOMContentLoaded", function () {
     timeRemaining.minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
     timeRemaining.seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-    return timeRemaining
+    return timeRemaining;
   }
 
+  // Check if exhibits element exists
   if (exhibits) {
     const exhibitsList = exhibits.querySelectorAll('.exhibit');
     exhibitsList.forEach((exhibit) => {
+      // Get the start date attribute from the exhibit
       const startDate = exhibit.getAttribute('data-start-date');
       const timeRemaining = getTimeDifference(startDate, exhibit);
+
+      // Hide exhibit button if the exhibition has started
       if (
         timeRemaining.days >= 0 &&
         timeRemaining.hours >= 0 &&
@@ -30,8 +41,11 @@ document.addEventListener("DOMContentLoaded", function () {
         exhibit.querySelector('.exhibit-btn').style.display = 'None';
       }
 
+      // Update the time remaining every second
       setInterval(function () {
         const timeRemaining = getTimeDifference(startDate, exhibit);
+
+        // Display time remaining if the exhibition has not ended
         if (
           timeRemaining.days >= 0 &&
           timeRemaining.hours >= 0 &&
@@ -53,6 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
           timeRemaining.minutes <= 0 &&
           timeRemaining.seconds < 0
         ) {
+          // Clear time display and show exhibit button if exhibition has ended
           exhibit.querySelector('.days').innerHTML = '';
           exhibit.querySelector('.hours').innerHTML = '';
           exhibit.querySelector('.minutes').innerHTML = '';
@@ -60,10 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
           exhibit.querySelector('.exhibit-btn').style.display = 'flex';
         }
 
-    }, 1000);
-  });
+      }, 1000);
+    });
   }
 
+  // Check if artwork indicators element exists
   if (artworkIndicators) {
     const indicators = artworkIndicators.querySelectorAll('.indicator');
     const prevButton = document.getElementById('prev-button');
@@ -72,34 +88,42 @@ document.addEventListener("DOMContentLoaded", function () {
     let currentIndex = 0;
     let intervalId;
 
+    // Set the first indicator as active on window load
     window.onload = function () {
       indicators[0].classList.add('active');
     };
 
+    // Event listener for the next button
     nextButton.addEventListener('click', () => {
-      console.log(nextButton);
       transitionTo(currentIndex + 1);
     });
 
+    // Event listener for the previous button
     prevButton.addEventListener('click', () => {
-      console.log(prevButton);
       transitionTo(currentIndex - 1);
     });
 
+    // Event listener for each indicator
     indicators.forEach((indicator, index) => {
       indicator.addEventListener('click', () => {
         transitionTo(index);
       });
     });
 
+    /*
+    Function to transition to the specified index
+    */
     function transitionTo(index) {
       currentIndex = index;
+
+      // Ensure index is within the valid range
       if (currentIndex < 0) {
         currentIndex = indicators.length - 1;
       } else if (currentIndex >= indicators.length) {
         currentIndex = 0;
       }
 
+      // Calculate the left value for the slider
       const leftValue = -currentIndex * 800;
       slider.style.left = leftValue + 'px';
       stopInterval();
@@ -107,6 +131,9 @@ document.addEventListener("DOMContentLoaded", function () {
       updateIndicators();
     }
 
+    /*
+    Function to update the active indicator
+    */
     function updateIndicators() {
       indicators.forEach((indicator, index) => {
         indicator.classList.remove('active');
@@ -116,6 +143,9 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    /*
+    Function to start the interval for automatic transitions
+    */
     function startInterval() {
       stopInterval();
       intervalId = setInterval(() => {
@@ -123,10 +153,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 4000);
     }
 
+    /*
+    Function to stop the automatic transition interval
+    */
     function stopInterval() {
       clearInterval(intervalId);
     }
 
+    // Start the interval on window load
     startInterval();
   }
 });

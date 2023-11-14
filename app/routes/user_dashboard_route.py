@@ -4,7 +4,9 @@ from flask_login import login_required
 from app.models import User
 
 
-# User dashboard to show their artworks and their account details
+"""
+User dashboard to show their artworks, their account details
+"""
 @app.route("/<string:username>/dashboard")
 @login_required
 def user_dashboard(username):
@@ -15,8 +17,10 @@ def user_dashboard(username):
     if user.category == 'artist':
         for artwork in user.owner_artworks:
             if artwork.type == "general_artwork":
+                """list for general artworks"""
                 my_general_artworks.append(artwork)
             elif artwork.type == "exhibit_artwork":
+                """list for exhibit artworks"""
                 my_exhibit_artworks.append(artwork)
     return render_template(
         "user_dashboard.html",

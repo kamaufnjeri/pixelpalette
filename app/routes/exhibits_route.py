@@ -13,8 +13,8 @@ def exhibits():
     current_exhibits = []
     for exhibit in exhibits:
         if exhibit.end_date > current_date and exhibit.exhibit_artworks != []:
+            """append only those exhibits with artworks and have not yet reached the end date"""
             current_exhibits.append(exhibit)
-    print(current_exhibits)
     return render_template("exhibits.html", current_exhibits=current_exhibits)
 
 
@@ -32,7 +32,6 @@ def view_exhibits(id):
 @app.route("/<string:username>/add_exhibit", methods=["POST", "GET"])
 @login_required
 def add_exhibit(username):
-
     if request.method == "POST":
         name = request.form.get('name')
         description = request.form.get('description')
@@ -56,6 +55,7 @@ def add_exhibit(username):
                 return redirect(url_for('user_dashboard', username=current_user.username))
 
             except Exception as e:
+                """incase of an error"""
                 db.session.rollback()
                 flash(f"Error creating exhibit: Try again!", category="danger")
                 return redirect(url_for('add_exhibit', username=username))
@@ -75,6 +75,7 @@ def add_exhibit(username):
                     existing_exhibit.start_date = exhibit_date
                     existing_exhibit.end_date = end_date
                     for exhibit_artwork in existing_exhibit.exhibit_artworks:
+                        """if modifying delete all artworks in the previous exhibit"""
                         db.session.delete(exhibit_artwork)
 
                     db.session.commit()
@@ -97,19 +98,24 @@ def add_artwork_to_exhibit(id):
     if id:
         artwork = Artwork.query.filter_by(id=id).first()
         if artwork:
+            """check artwork exists"""
             try:
                 exhibit = current_user.exhibits
                 if exhibit:
+                    """check user has an exhibit"""
                     current_date = datetime.now()
                     if current_date < exhibit.start_date:
+                        """check the exhibit is yet to start"""
                         if Exhibit_Artwork.query.filter(
                             Exhibit_Artwork.user_id == current_user.id, 
                             Exhibit_Artwork.artwork_id == id,
                             Exhibit_Artwork.exhibit_id == exhibit.id
                         ).first() in exhibit.exhibit_artworks:
+                            """check if artwork is already in the exhibit"""
                             flash("Artwork already added to exhibit", category='danger')
                         
                         else:
+                            """add artwork to exhibit if it is yet to start"""
                             exhibit_artwork = Exhibit_Artwork(user_id=current_user.id, artwork_id=id, exhibit_id=exhibit.id, artwork=artwork)
                             db.session.add(exhibit_artwork)
                             db.session.commit()
@@ -118,19 +124,23 @@ def add_artwork_to_exhibit(id):
                         return redirect(url_for('user_dashboard', username=current_user.username))
                     
                     elif current_date >= exhibit.start_date and current_date <= exhibit.end_date:
+                        """check exhibit if ongoing"""
                         flash("Exhibition is ongoing", category="danger")
                         return redirect(url_for('user_dashboard', username=current_user.username))
                     else:
+                        """check if the exhibit is over"""
                         flash("You need to create a new exhibit", category="danger")
                         return redirect(url_for('add_exhibit', username=current_user.username))
                     
                 else:
+                    """if the exhibit is not created"""
                     flash("You need to create an exhibit", category="danger")
                     return redirect(url_for('add_exhibit', username=current_user.username))
 
             except Exception as e:
+                """incase of an error"""
                 db.session.rollback()
-                flash(f"error: {str(e)}", category="danger")
+                flash(f"Error: {str(e)}", category="danger")
                 return redirect(url_for('user_dashboard', username=current_user.username))
 
 
@@ -142,25 +152,31 @@ def remove_from_exhibit(artwork_id):
         artwork_to_remove = Exhibit_Artwork.query.filter_by(artwork_id=artwork_id).first()
         exhibit = current_user.exhibits
         if exhibit and artwork_to_remove:
+            """check user has an exhibit and artwork is in the exhibit"""
             current_date = datetime.now()
             try:
                 if current_date < exhibit.start_date:
+                    """only remove the artwork if exhibit is yet to start"""
                     db.session.delete(artwork_to_remove)
                     db.session.commit()
                     flash("Successfully removed artwork from exhibit", category="success")
                     return redirect(url_for('user_dashboard', username=current_user.username))
                 
                 elif current_date >= exhibit.start_date and current_date <= exhibit.end_date:
+                        """don't remove if the current date is within the start and end date of exhibit"""
                         flash("Exhibition is ongoing", category="danger")
                         return redirect(url_for('user_dashboard', username=current_user.username))
                     
                 else:
+                    """if the exhibit is over"""
                     flash("No exhibition ongoing", category="danger")
                     return redirect(url_for('user_dashboard', username=current_user.username))
             except Exception as e:
+                """incase of an error"""
                 flash(f"Error: {str(e)}", category="success")
                 return redirect(url_for('user_dashboard', username=current_user.username))
         else:
+            """incase artwork is not in exhibiyt"""
             flash("Artwork not in exhibit", category="danger")
             return redirect(url_for('user_dashboard', username=current_user.username))
 
@@ -171,19 +187,23 @@ def remove_from_exhibit(artwork_id):
 def delete_exhibit(id):
     exhibit = Exhibits.query.filter_by(id=id).first()
     if exhibit:
+        """check if exhibit exists"""
         current_date = datetime.now()
         if current_date >= exhibit.start_date and current_date <= exhibit.end_date and exhibit.exhibit_artworks != []:
+            """if exhibit is ongoing and has artworks don't delete"""
             flash("Exhibition is ongoing", category="danger")
             return redirect(url_for('user_dashboard', username=current_user.username))
 
         if exhibit.exhibit_artworks != []:
+            """delete all artworks in an exhibit"""
             for exhibit_artwork in exhibit.exhibit_artworks:
                 db.session.delete(exhibit_artwork)
-        db.session.delete(exhibit)
+        db.session.delete(exhibit) #delete exhibit
         db.session.commit()
         flash("Successfully deleted exhibit", category="success")
         return redirect(url_for('user_dashboard', username=current_user.username))
     else:
+        """incase the exhibit does not exist"""
         flash("No exhibit", category="danger")
         return redirect(url_for('user_dashboard', username=current_user.username))
     
@@ -194,6 +214,7 @@ def edit_exhibit(username, exhibit_id):
     exhibit = Exhibits.query.filter_by(id=exhibit_id).first()
     current_date = datetime.now()
     if exhibit:
+        """check exibit exists"""
         if request.method == "POST":
             name = request.form.get('name')
             description = request.form.get('description')

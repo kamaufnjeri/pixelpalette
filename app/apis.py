@@ -21,7 +21,6 @@ def all_users():
     try:
         all_users = User.query.all()
         users = []
-
         for user1 in all_users:
             """check if user is an artist and has artworks"""
             if user1.category == 'artist' and user1.owner_artworks != []:
@@ -47,7 +46,7 @@ def all_artworks():
         artworks = []
         if all_artworks:
             for art in all_artworks:
-                """if an art has an owner and its an general aartwork"""
+                """if an art has an owner and its an general artwork"""
                 if art.owner and art.type == 'general_artwork':
                     artwork = {
                         "title": art.title,
@@ -71,11 +70,10 @@ def all_artworks():
 """single artwork api"""
 @app.route("/api/<string:username>/artworks/<int:id>", methods=["GET"])
 def artwork(id, username):
-
     try:
         artwork = Artwork.query.filter_by(id=id).first()
-
         if artwork and artwork.owner != None and artwork.type == "general_artwork":
+            """dictionary with information about a single artwork"""
             artwork_json = {
                 "title": artwork.title,
                 "price": artwork.price,
@@ -99,9 +97,11 @@ def artist_artworks(username):
     try:
         artist = User.query.filter_by(username=username).first()
         if artist:
+            """check artists exists"""
             artworks = []
             for artwork in artist.owner_artworks:
                 if artwork.owner != None and artwork.type == "general_artwork":
+                    """append all general artworks with their details"""
                     owner_artwork = {
                         "id": artwork.id,
                         "name": artwork.title,

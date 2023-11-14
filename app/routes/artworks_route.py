@@ -27,7 +27,7 @@ def single_artwork(id, username):
             """check user is authenticated"""
             try:
                 artwork = Artwork.query.get(id)
-                if artwork:
+                if artwork and artwork.type == "general_artwork":
                     """check artwork exists"""
                     shopping_cart = ShoppingCart.query.filter_by(user_id=current_user.id).first()
                     if shopping_cart:

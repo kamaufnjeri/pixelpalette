@@ -34,6 +34,7 @@ class Methods:
 
         try:
             if img_byte_array.tell() <= max_size_bytes:
+                """upload to cloudinary"""
                 upload_result = uploader.upload(
                     img_byte_array,
                     folder='my_pics',
