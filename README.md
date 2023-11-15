@@ -78,7 +78,7 @@ You can be able to see all artists by visiting the artists page where you can vi
 * HTML, CSS, JavaScript for frontend development.
 * Python for server-side implementation.
 * Flask the Web Development Framework.
-* Additional libraries and frameworks may have been used. Details can be found in the code repository.
+* Additional libraries may have been used. Details can be found in the code repository.
 
 ## Acknowledgment
 * [ALX](https://www.alxafrica.com/) - software engineering.
