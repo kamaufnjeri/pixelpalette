@@ -1,5 +1,9 @@
 # Pixelpallete.
-Pixelpallete is designed to connect artists with art enthusiasts. It serves as a marketplace for artists to showcase their masterpieces while providing a seamless experience for art lovers to explore, interact, and purchase their favorite art pieces.
+In Kenya, artists have been facing an issue where they can't monetize their work, which has led them to earn almost nothing for their hard work. Consequently, many artists give up on their skills, resulting in wasted potential and missed opportunities for improving their quality of life. Recognizing this issue, we were inspired to create a web application that unites artists and art enthusiasts. 
+Our goal is to provide a platform where artists could showcase their artworks and art enthusiasts could view and purchase pieces that interested them. This not only benefits the artists by providing remuneration for their work but also offers them exposure to a wider audience
+While developing PixelPallete, the main challenge we faced was deploying the app but after vigorous nginx and supervisor configuration debugging we were able to tackle the challenge. 
+In the future we envision to include Mpesa Integration to enable purchasing of the artworks online.
+When we started this project we knew that this was not going to be an easy journey but this did not deter us from taking up the challenge and although it took perseverance, being relentless and lots of late night sessions over the two weeks we are proud of what resulted of this ambitious project.
 
 [Visit our website](https://kamaufnjeri.github.io)
 
@@ -7,9 +11,11 @@ Pixelpallete is designed to connect artists with art enthusiasts. It serves as a
 * **Florence Njeri Kamau**
   - [Github](https://github.com/kamaufnjeri)
   - [LinkedIn](https://www.linkedin.com/in/florence-kamau-696874241/)
+  - [BlogPost](https://medium.com/@kamaufnjeri2019/pixelpalette-showcasing-art-inviting-enchantment-d23c63627e05)
 * **Uel Kariuki**
   - [Github](https://github.com/uelkariuki)
   - [LinkedIn](https://www.linkedin.com/in/uel-kariuki/)
+  - [BlogPost](https://medium.com/@cratzuel/pixelpalette-portfolio-blog-a-colorful-showcase-of-digital-artistry-79a0deef4c86)
 * **Abraham Bett**
   - [Github](https://github.com/abraham-ship)
   - [LinkedIn](https://www.linkedin.com/in/abraham-bett-006245199/)
