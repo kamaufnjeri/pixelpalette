@@ -1,4 +1,4 @@
-# Pixelpallete.
+# Pixelpalette.
 In Kenya, artists have been facing an issue where they can't monetize their work, which has led them to earn almost nothing for their hard work. Consequently, many artists give up on their skills, resulting in wasted potential and missed opportunities for improving their quality of life. Recognizing this issue, we were inspired to create a web application that unites artists and art enthusiasts. 
 Our goal is to provide a platform where artists could showcase their artworks and art enthusiasts could view and purchase pieces that interested them. This not only benefits the artists by providing remuneration for their work but also offers them exposure to a wider audience
 While developing PixelPallete, the main challenge we faced was deploying the app but after vigorous nginx and supervisor configuration debugging we were able to tackle the challenge. 
@@ -181,3 +181,4 @@ Thank you for contributing to PixelPallete!
   
 ## License
 Source code in this repository is licensed under the MIT license. Please see the [License File](LICENSE) for more information.
+
