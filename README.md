@@ -1,7 +1,7 @@
 # Pixelpalette.
 In Kenya, artists have been facing an issue where they can't monetize their work, which has led them to earn almost nothing for their hard work. Consequently, many artists give up on their skills, resulting in wasted potential and missed opportunities for improving their quality of life. Recognizing this issue, we were inspired to create a web application that unites artists and art enthusiasts. 
 Our goal is to provide a platform where artists could showcase their artworks and art enthusiasts could view and purchase pieces that interested them. This not only benefits the artists by providing remuneration for their work but also offers them exposure to a wider audience
-While developing PixelPallete, the main challenge we faced was deploying the app but after vigorous nginx and supervisor configuration debugging we were able to tackle the challenge. 
+While developing PixelPalette, the main challenge we faced was deploying the app but after vigorous nginx and supervisor configuration debugging we were able to tackle the challenge. 
 In the future we envision to include Mpesa Integration to enable purchasing of the artworks online.
 When we started this project we knew that this was not going to be an easy journey but this did not deter us from taking up the challenge and although it took perseverance, being relentless and lots of late night sessions over the two weeks we are proud of what resulted of this ambitious project.
 
@@ -21,13 +21,13 @@ When we started this project we knew that this was not going to be an easy journ
   - [LinkedIn](https://www.linkedin.com/in/abraham-bett-006245199/)
 
 ## Installation
-* In your temirnal eg. Ubuntu terminal run the following command `git clone https://github.com/kamaufnjeri/pixelpallete.git`
-* Go into the projects directory by running the command `cd pixelpallete`
+* In your temirnal eg. Ubuntu terminal run the following command `git clone https://github.com/kamaufnjeri/pixelpalette.git`
+* Go into the projects directory by running the command `cd pixelpalette`
 * Create a virtual enviromnent by the command `virtualenv name-of-your-virtual-enviroment`. To install virtual environment use `sudo apt install virtualenv`
 * To activate the virtual environment. For linux run the command `source name-of-your-virtual-environment/bin/activate` and windows `source name-of-your-virtual-environment/Scripts/activate`
-* Then run the command `pip install -r requirements.txt` to install the libraries and modules needed by pixelpallete
-* Run the command `python app.py` or `python3 app.py` to run pixelpallete
-* To access pixelpallete open the url `http://127.0.0.0.1:5000`
+* Then run the command `pip install -r requirements.txt` to install the libraries and modules needed by pixelpalette
+* Run the command `python app.py` or `python3 app.py` to run pixelpalette
+* To access pixelpalette open the url `http://127.0.0.0.1:5000`
 
 ## Features
 * Artist Showcases: Artists can create profiles and exhibit their best artworks, providing a portfolio for potential buyers.
@@ -181,4 +181,5 @@ Thank you for contributing to PixelPallete!
   
 ## License
 Source code in this repository is licensed under the MIT license. Please see the [License File](LICENSE) for more information.
+
 
