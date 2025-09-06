@@ -183,3 +183,4 @@ Thank you for contributing to PixelPallete!
 Source code in this repository is licensed under the MIT license. Please see the [License File](LICENSE) for more information.
 
 
+
