@@ -86,7 +86,7 @@ You can be able to see all artists by visiting the artists page where you can vi
 
 ## Contributions
 
-We welcome contributions from the community to improve PixelPallete. To contribute, please follow these steps:
+We welcome contributions from the community to improve PixelPalette. To contribute, please follow these steps:
 
 1. **Fork the Repository:** Start by forking the repository to your GitHub account.
 
@@ -168,7 +168,7 @@ Here's an example of a contribution that fixes a bug:
 
 10. Once approved, the changes will be merged into the main branch.
 
-Thank you for contributing to PixelPallete!
+Thank you for contributing to PixelPalette!
 
 ## Related Projects
 1. **Art Gallery Management System**
@@ -181,6 +181,7 @@ Thank you for contributing to PixelPallete!
   
 ## License
 Source code in this repository is licensed under the MIT license. Please see the [License File](LICENSE) for more information.
+
 
 
 
